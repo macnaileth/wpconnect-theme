@@ -23,6 +23,7 @@ None ATM
 == Changelog ==
 
 06.01.2023 - Started coding this thing and setup git repo.
+07.01.2023 - Added Backend & Utilites class, added de_DE language files
 
 == upcoming ==
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-01-06 14:45+0100\n"
+"POT-Creation-Date: 2023-01-07 18:34+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -17,9 +17,33 @@ msgstr ""
 "X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;"
-"_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;"
-"__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,"
+"_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Generator: Poedit 3.1\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: lib/WPCBackend.php:25
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: lib/WPCBackend.php:25
+msgid "WPConnect"
+msgstr "WPConnect"
+
+#: lib/WPCBackend.php:36
+msgid "WPC theme settings page"
+msgstr "WPC Einstellungsseite"
+
+#: lib/WPCBackend.php:38
+msgid ""
+"Settings page to create a settings file, a redirector and setup the WPC API "
+"endpoint."
+msgstr ""
+"Einstellungsseite, um eine Einstellungsdatei und einen Redirector zu "
+"erstellen und den WPC-API-Endpunkt einzurichten."
+
+#: lib/WPCBackend.php:39
+msgid "WPC Version: "
+msgstr "WPC-Version: "
