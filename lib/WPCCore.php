@@ -15,6 +15,7 @@ class WPCCore {
     public function __construct() {
         //require libs
         require_once 'WPCBackend.php';
+        require_once 'WPCUtilities.php';
 
         //setup vars
         $this->themeDir = get_template_directory();

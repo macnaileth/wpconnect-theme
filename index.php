@@ -6,6 +6,7 @@
  */
 //we need to die if no ABSPATH defined
 if (!defined('ABSPATH')) { die("Forbidden."); }
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -15,11 +16,32 @@ if (!defined('ABSPATH')) { die("Forbidden."); }
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
         <?php wp_head(); ?>
     </head>
-    <body <?php body_class(); ?>>
+    <body <?php body_class(); ?>>       
         <?php
             wp_body_open();
-            // put your code here
-            echo '<h1>Hello World!</h1>';
+            //if we have the option for redirect set, do a direct redirect instead of loading stuff at all window.location.replace("http://www.w3schools.com");
+            $redirect = lib\WPCUtilities::wpc_get_theme_option('wpc_redirect');
+            $redirectURI = lib\WPCUtilities::wpc_get_theme_option('wpc_redirect_uri');
+            
+            //check with regex
+            $regex = "((https?|ftp)\:\/\/)?";
+            $regex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?";
+            $regex .= "([a-z0-9-.]*)\.([a-z]{2,3})";
+            $regex .= "(\:[0-9]{2,5})?";
+            $regex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
+            $regex .= "(\?[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*)?";
+            $regex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?";
+
+            if ( $redirect == 'on' && !empty($redirectURI) && preg_match("/^$regex$/i", $redirectURI) ) {                             
+                
+                $resolvedURI = strpos($redirectURI, "http://") === false && strpos($redirectURI, "https://") === false ? "http://" . $redirectURI : $redirectURI;     
+                
+                echo '<script>window.location.replace("' . $resolvedURI . '");</script>';
+                
+            } else {    
+                // put your code here
+                echo '<h1>Hello World!</h1>';
+            }
             wp_footer();
         ?>
     </body>

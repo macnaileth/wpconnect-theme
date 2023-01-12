@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-01-07 18:34+0100\n"
+"POT-Creation-Date: 2023-01-12 15:57+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -24,19 +24,19 @@ msgstr ""
 "X-Generator: Poedit 3.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: lib/WPCBackend.php:25
+#: lib/WPCBackend.php:27
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: lib/WPCBackend.php:25
+#: lib/WPCBackend.php:27
 msgid "WPConnect"
 msgstr "WPConnect"
 
-#: lib/WPCBackend.php:36
+#: lib/WPCBackend.php:41
 msgid "WPC theme settings page"
 msgstr "WPC Einstellungsseite"
 
-#: lib/WPCBackend.php:38
+#: lib/WPCBackend.php:43
 msgid ""
 "Settings page to create a settings file, a redirector and setup the WPC API "
 "endpoint."
@@ -44,6 +44,35 @@ msgstr ""
 "Einstellungsseite, um eine Einstellungsdatei und einen Redirector zu "
 "erstellen und den WPC-API-Endpunkt einzurichten."
 
-#: lib/WPCBackend.php:39
+#: lib/WPCBackend.php:44
 msgid "WPC Version: "
 msgstr "WPC-Version: "
+
+#: lib/WPCBackend.php:54
+msgid "Redirect"
+msgstr "Weiterleiten"
+
+#: lib/WPCBackend.php:57
+msgid "Redirect directly instead of hitting Splashscreen."
+msgstr ""
+"Leiten Sie direkt um, anstatt auf den Begrüßungsbildschirm zu gelangen."
+
+#: lib/WPCBackend.php:63
+msgid "Redirect URL"
+msgstr "Weiterleitungs-URL"
+
+#: lib/WPCBackend.php:72
+msgid "Select Example"
+msgstr ""
+
+#: lib/WPCBackend.php:78
+msgid "Option 1"
+msgstr ""
+
+#: lib/WPCBackend.php:79
+msgid "Option 2"
+msgstr ""
+
+#: lib/WPCBackend.php:80
+msgid "Option 3"
+msgstr ""

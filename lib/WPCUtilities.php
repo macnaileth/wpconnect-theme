@@ -17,7 +17,7 @@ class WPCUtilities {
      *
      */
     public static function wpc_get_theme_options() {
-        return get_option('theme_options');
+        return get_option('wpc_options');
     }
 
     /**
@@ -45,17 +45,17 @@ class WPCUtilities {
         if ($options) {
 
             // Checkbox
-            if (!empty($options['checkbox_example'])) {
-                $options['checkbox_example'] = 'on';
+            if (!empty($options['wpc_redirect'])) {
+                $options['wpc_redirect'] = 'on';
             } else {
-                unset($options['checkbox_example']); // Remove from options if not checked
+                unset($options['wpc_redirect']); // Remove from options if not checked
             }
 
             // Input
-            if (!empty($options['input_example'])) {
-                $options['input_example'] = sanitize_text_field($options['input_example']);
+            if (!empty($options['wpc_redirect'])) {   
+                $options['wpc_redirect'] = sanitize_text_field($options['wpc_redirect']);
             } else {
-                unset($options['input_example']); // Remove from options if empty
+                unset($options['wpc_redirect']); // Remove from options if empty or invalid
             }
 
             // Select
