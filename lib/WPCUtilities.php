@@ -67,5 +67,27 @@ class WPCUtilities {
         // Return sanitized options
         return $options;
     }
+    /**
+     * wpc_dirs()
+     * 
+     * @return associative array path: template dirctory, uri: template directory uri
+     */
+    public static function wpc_dirs() {
+        return [ "path" => get_template_directory(), "uri" => get_template_directory_uri() ];
+    }
+    /**
+     * wpc_console_log($output, $with_script_tags = true)
+     * Thanks to: Kim Sia // https://stackify.com/how-to-log-to-console-in-php/
+     * 
+     * @param string $output string to be logged to console
+     * @param type $with_script_tags [default: true] boolean: weather to enclose js console.log within <script> tags or not
+     */
+    public static function wpc_console_log($output, $with_script_tags = true) {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
+        if ($with_script_tags) {
+            $js_code = '<script>' . $js_code . '</script>';
+        }
+        echo $js_code;
+    }   
 
 }

@@ -6,7 +6,8 @@
  */
 //we need to die if no ABSPATH defined
 if (!defined('ABSPATH')) { die("Forbidden."); }
-
+//get path and uri
+$dir = lib\WPCUtilities::wpc_dirs();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -31,17 +32,41 @@ if (!defined('ABSPATH')) { die("Forbidden."); }
             $regex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
             $regex .= "(\?[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*)?";
             $regex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?";
+            
+            $resolvedURI = '';
 
-            if ( $redirect == 'on' && !empty($redirectURI) && preg_match("/^$regex$/i", $redirectURI) ) {                             
+            if ( !empty($redirectURI) && preg_match("/^$regex$/i", $redirectURI) ) {                             
                 
                 $resolvedURI = strpos($redirectURI, "http://") === false && strpos($redirectURI, "https://") === false ? "http://" . $redirectURI : $redirectURI;     
                 
-                echo '<script>window.location.replace("' . $resolvedURI . '");</script>';
+                if ( $redirect == 'on' ) {
+                    //redirect via JS
+                    echo '<script>window.location.replace("' . $resolvedURI . '");</script>';
+                    //set no script tag for users with js disabled
+                    echo '<noscript>' 
+                        . esc_html__(
+                                'Normally, you should be redirected. It seems that you have Javascript disabled in your browser or your browser cannot handle script. You will find our app here: ', 
+                                'tsu-wpconnect-theme'
+                                ) 
+                        . '<a href="' . $resolvedURI . '">' . $resolvedURI . '</a>' 
+                        . '</noscript>';
                 
-            } else {    
-                // put your code here
-                echo '<h1>Hello World!</h1>';
+                } else {
+                    //success, no redirection
+                    lib\WPCLandingPage::wpc_create_lp( $dir['uri'] . '/img/wpconnect2023.svg', $resolvedURI, 'SUCCESS');
+                    //log it
+                    lib\WPCUtilities::wpc_console_log( esc_html__('*** Landing page mounted successfully! ***', 'tsu-wpconnect-theme') );
+                    
+                }
+                
+            } else {   
+                //error resolving uri
+                lib\WPCLandingPage::wpc_create_lp( $dir['uri'] . '/img/wpconnect2023.svg', $resolvedURI, 'ERROR');
+                //log it also
+                lib\WPCUtilities::wpc_console_log( esc_html__('*** Landing page mounting error: Redirect/Application-URL not defined! ***', 'tsu-wpconnect-theme') );                
+                
             }
+  
             wp_footer();
         ?>
     </body>

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-01-12 15:57+0100\n"
+"POT-Creation-Date: 2023-01-15 18:25+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -18,25 +18,45 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,"
-"_nc:4c,1,2\n"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Generator: Poedit 3.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: lib/WPCBackend.php:27
+#: index.php:48
+msgid ""
+"Normally, you should be redirected. It seems that you have Javascript "
+"disabled in your browser or your browser cannot handle script. You will find "
+"our app here: "
+msgstr ""
+"Normalerweise sollten Sie umgeleitet werden. Es scheint, dass Sie Javascript "
+"in Ihrem Browser deaktiviert haben oder Ihr Browser damit nicht umgehen "
+"kann. Unsere App finden Sie hier: "
+
+#: index.php:58
+msgid "*** Landing page mounted successfully! ***"
+msgstr "*** Landingpage erfolgreich gemountet! ***"
+
+#: index.php:66
+msgid ""
+"*** Landing page mounting error: Redirect/Application-URL not defined! ***"
+msgstr ""
+"*** Fehler beim Laden der Landingpage: Weiterleitung/Anwendungs-URL nicht "
+"definiert! ***"
+
+#: lib/WPCBackend.php:28
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: lib/WPCBackend.php:27
+#: lib/WPCBackend.php:28
 msgid "WPConnect"
 msgstr "WPConnect"
 
-#: lib/WPCBackend.php:41
+#: lib/WPCBackend.php:50
 msgid "WPC theme settings page"
 msgstr "WPC Einstellungsseite"
 
-#: lib/WPCBackend.php:43
+#: lib/WPCBackend.php:52
 msgid ""
 "Settings page to create a settings file, a redirector and setup the WPC API "
 "endpoint."
@@ -44,35 +64,71 @@ msgstr ""
 "Einstellungsseite, um eine Einstellungsdatei und einen Redirector zu "
 "erstellen und den WPC-API-Endpunkt einzurichten."
 
-#: lib/WPCBackend.php:44
+#: lib/WPCBackend.php:53
 msgid "WPC Version: "
 msgstr "WPC-Version: "
 
-#: lib/WPCBackend.php:54
+#: lib/WPCBackend.php:63
 msgid "Redirect"
 msgstr "Weiterleiten"
 
-#: lib/WPCBackend.php:57
+#: lib/WPCBackend.php:66
 msgid "Redirect directly instead of hitting Splashscreen."
 msgstr ""
 "Leiten Sie direkt um, anstatt auf den Begrüßungsbildschirm zu gelangen."
 
-#: lib/WPCBackend.php:63
+#: lib/WPCBackend.php:72
 msgid "Redirect URL"
 msgstr "Weiterleitungs-URL"
 
-#: lib/WPCBackend.php:72
+#: lib/WPCBackend.php:81
 msgid "Select Example"
 msgstr ""
 
-#: lib/WPCBackend.php:78
+#: lib/WPCBackend.php:87
 msgid "Option 1"
 msgstr ""
 
-#: lib/WPCBackend.php:79
+#: lib/WPCBackend.php:88
 msgid "Option 2"
 msgstr ""
 
-#: lib/WPCBackend.php:80
+#: lib/WPCBackend.php:89
 msgid "Option 3"
 msgstr ""
+
+#: lib/WPCLandingPage.php:24 lib/WPCLandingPage.php:39
+msgid "Please go on..."
+msgstr "Bitte gehen Sie weiter…"
+
+#: lib/WPCLandingPage.php:25 lib/WPCLandingPage.php:40
+msgid "You arrived at the pages of"
+msgstr "Sie gelangten auf die Seiten von"
+
+#: lib/WPCLandingPage.php:25
+msgid ""
+"We regret that this is not the correct page. To access our content, click "
+"the button below."
+msgstr ""
+"Wir bedauern, dass dies nicht die richtige Seite ist. Um auf unsere Inhalte "
+"zuzugreifen, klicken Sie auf die Schaltfläche unten."
+
+#: lib/WPCLandingPage.php:26
+msgid "Continue to"
+msgstr "Weiter zu"
+
+#: lib/WPCLandingPage.php:40
+msgid "We regret that this is not the correct page."
+msgstr ""
+"Wir bedauern, dass dies nicht die richtige Seite ist. Um auf unsere Inhalte "
+"zuzugreifen, klicken Sie auf die Schaltfläche unten."
+
+#: lib/WPCLandingPage.php:46
+msgid ""
+"If you hit this screen, something regarding the web frontend was configured "
+"in a very wrong way. There was no landing page type defined. Contact site "
+"admin:"
+msgstr ""
+"Wenn Sie diesen Bildschirm sehen, wurde etwas in Bezug auf das Web-Frontend "
+"sehr falsch konfiguriert. Es wurde kein Landingpage-Typ definiert. Wenden "
+"Sie sich an den Site-Administrator:"

@@ -58,7 +58,7 @@ class WPCBackend {
                     <?php do_settings_sections( 'wpc_options' ); ?>
                         <table class="form-table wpc-admin-settings-table">
 
-                            <?php // Checkbox example ?>
+                            <?php // Redirect Yes/No ?>
                             <tr valign="top">
                                 <th scope="row"><?php esc_html_e('Redirect', 'tsu-wpconnect-theme'); ?></th>
                                 <td>
@@ -67,7 +67,7 @@ class WPCBackend {
                                 </td>
                             </tr>
 
-                            <?php // Text input example ?>
+                            <?php // Redirect URL ?>
                             <tr valign="top">
                                 <th scope="row"><?php esc_html_e('Redirect URL', 'tsu-wpconnect-theme'); ?></th>
                                 <td>

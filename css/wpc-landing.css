@@ -1,0 +1,108 @@
+/*
+wpc-landing.css
+---------------
+Stylesheet for the little landing page which can be displayed as an alternative to a direct redirection via JS.
+this is very small and somehow bootstrap orientated :-)
+*/
+/* 
+    Created on : 15.01.2023, 15:50:54
+    Author     : marconagel
+*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fengardo Neue', sans-serif;
+    line-height: 150%;
+}
+
+h1 {
+    font-family: 'LeckerliOne', sans-serif;
+}
+
+.container {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    top: 30%;
+    position: absolute;
+    width: 100%;
+}
+
+.row.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;    
+}
+
+.column {
+    width: 100%;
+    padding: 0rem;
+    text-align: center;
+}
+
+.wpc-redirect-button {
+    border: 1px solid;
+    padding: 0.45rem 0.35rem 0.25rem 0.35rem;
+    border-radius: 0.25rem;
+    text-decoration: none;    
+}
+.wpc-redirect-button:hover {
+    opacity: 0.9;
+}
+.wpc-logo-large {
+    width: 90%;
+}
+
+@media (min-width: 576px) { 
+    /* small */ 
+    .row.center { 
+        flex-direction: column;        
+    }  
+    .column {
+        width: 100%;  
+        padding: 0rem;
+        text-align: center;
+    }
+    .container {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;    
+        top: 30%;
+    }
+    .wpc-logo-large {
+        width: 90%;
+    }    
+}
+
+
+@media (min-width: 768px) { 
+    /* medium */  
+    .row.center { 
+        flex-direction: row;        
+    }  
+    .column {
+        width: 50%;    
+        padding: 1.25rem;
+        text-align: left;        
+    }  
+    .container {
+        padding: 0rem;   
+        top: 35%;
+    }  
+    .wpc-logo-large {
+        width: 100%;
+    }     
+}
+
+
+@media (min-width: 992px) { /* large */ }
+
+
+@media (min-width: 1200px) { /* xlarge */ }
+
+
+@media (min-width: 1400px) { /* xxl */ }
+
+
+
