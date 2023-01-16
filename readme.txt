@@ -24,6 +24,7 @@ None ATM
 
 06.01.2023 - Started coding this thing and setup git repo.
 07.01.2023 - Added Backend & Utilites class, added de_DE language files
+16.01.2023 - Added some Settings for redirect landing page. Easy things first ;-)
 
 == upcoming ==
 
@@ -32,6 +33,7 @@ Working Code.
 = 0.0.1 =
 
 - Started Coding
+- Added setup features for frontend screen
 
 == Resources & third party ==
 

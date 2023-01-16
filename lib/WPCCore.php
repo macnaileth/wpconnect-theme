@@ -33,6 +33,8 @@ class WPCCore {
         add_action( 'wp_head', array( $this, 'wpc_fr_inline_css' ) );
         //load frontend css & scripts
         add_action( 'wp_enqueue_scripts', array( $this, 'wpc_fr_scripts' ) ); 
+        //load backend css & scripts
+        add_action( 'admin_enqueue_scripts', array( $this, 'wpc_be_scripts' ) ); 
     }
     /**
      * wpc_language_setup()
@@ -48,6 +50,15 @@ class WPCCore {
      * Load frontend webfonts
      */    
     public function wpc_fr_inline_css() {
+        //get frontend style vars
+        $lp_settings = [
+            "bodybg-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-bg-color'),
+            "bodytxt-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-txt-color'),
+            "bodyhead-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-color'),
+            "container-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-cbg-color'),
+            "buttonbg-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-btn-color'),
+            "buttontxt-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-btt-color')
+        ];
         ?>
             <style type="text/css">
                 @font-face {
@@ -68,19 +79,19 @@ class WPCCore {
                     font-display: swap;
                 }
                 body {
-                    background-color: #0F595D;
-                    color: #262D2E;
+                    background-color: <?php echo $lp_settings["bodybg-color"]; ?>;
+                    color: <?php echo $lp_settings["bodytxt-color"]; ?>;
                 }
                 .container {
-                    background-color: #ffffff;
+                    background-color: <?php echo $lp_settings["container-color"]; ?>;
                 }   
                 .h1 {
-                    color: #0A282A;
+                    color: <?php echo $lp_settings["bodyhead-color"]; ?>;
                 }
                 .wpc-redirect-button {
-                    color: #fff;
-                    background-color: #0F595D;  
-                    border-color: #0F595D;
+                    color: <?php echo $lp_settings["buttontxt-color"]; ?>;
+                    background-color: <?php echo $lp_settings["buttonbg-color"]; ?>;  
+                    border-color: <?php echo $lp_settings["buttonbg-color"]; ?>;
                 }
             </style>
         <?php
@@ -93,7 +104,29 @@ class WPCCore {
     public function wpc_fr_scripts() {
         //enque stuff
         wp_enqueue_style( 'wpc-base-style', $this->themeURI . '/style.css', array(), $this->versionNum );
-        wp_enqueue_style( 'wpc-fronted-style', $this->themeURI . '/css/wpc-landing.css', array(), $this->versionNum  );
-    }       
+        wp_enqueue_style( 'wpc-fronted-style', $this->themeURI . '/css/wpc-landing.css', array(), $this->versionNum  );       
+    }  
+    /**
+     * wpc_be_scripts()
+     * ------------------
+     * 
+     * Load admin style & script
+     * @global type $pagenow
+     */
+    public function wpc_be_scripts() {    
+        //look up where we are now
+        global $pagenow;
+        //enque script and style if needed on page
+        if( $pagenow == 'admin.php' ){
+            if ( $_GET['page'] == 'wpc_settings' ) {
+                wp_enqueue_script('wpc-admin-default-js', $this->themeURI . '/js/wpc-adminjs.js', array( 'wp-color-picker' ), false, true);
+            } 
+            if ($_GET['page'] == 'wpc_settings') {   
+                //load colorpicker
+                wp_enqueue_script( 'wp-color-picker' );
+                wp_enqueue_style( 'wp-color-picker' );
+            }
+        }     
+    }
     
 }

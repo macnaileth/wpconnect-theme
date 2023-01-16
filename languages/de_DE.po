@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-01-15 18:25+0100\n"
+"POT-Creation-Date: 2023-01-16 21:38+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -68,34 +68,66 @@ msgstr ""
 msgid "WPC Version: "
 msgstr "WPC-Version: "
 
-#: lib/WPCBackend.php:63
+#: lib/WPCBackend.php:59
+msgid "Basic Setup"
+msgstr "Grundeinstellungen"
+
+#: lib/WPCBackend.php:64
 msgid "Redirect"
 msgstr "Weiterleiten"
 
-#: lib/WPCBackend.php:66
+#: lib/WPCBackend.php:67
 msgid "Redirect directly instead of hitting Splashscreen."
 msgstr ""
 "Leiten Sie direkt um, anstatt auf den Begrüßungsbildschirm zu gelangen."
 
-#: lib/WPCBackend.php:72
+#: lib/WPCBackend.php:73
 msgid "Redirect URL"
 msgstr "Weiterleitungs-URL"
 
-#: lib/WPCBackend.php:81
+#: lib/WPCBackend.php:82
 msgid "Select Example"
 msgstr ""
 
-#: lib/WPCBackend.php:87
+#: lib/WPCBackend.php:88
 msgid "Option 1"
 msgstr ""
 
-#: lib/WPCBackend.php:88
+#: lib/WPCBackend.php:89
 msgid "Option 2"
 msgstr ""
 
-#: lib/WPCBackend.php:89
+#: lib/WPCBackend.php:90
 msgid "Option 3"
 msgstr ""
+
+#: lib/WPCBackend.php:104
+msgid "Landing/Redirect page settings"
+msgstr "Einstellungen für die Landing-/Redirect-Seite"
+
+#: lib/WPCBackend.php:108
+msgid "Body background color"
+msgstr "Body-Hintergrundfarbe"
+
+#: lib/WPCBackend.php:117
+msgid "Body text color"
+msgstr "Body-Textfarbe"
+
+#: lib/WPCBackend.php:126
+msgid "Body headline color"
+msgstr "Überschriftenfarbe"
+
+#: lib/WPCBackend.php:135
+msgid "Content container background color"
+msgstr "Hintergrund des Inhaltscontainers"
+
+#: lib/WPCBackend.php:144
+msgid "Button color"
+msgstr "Button-Farbe"
+
+#: lib/WPCBackend.php:153
+msgid "Button text color"
+msgstr "Button-Textfarbe"
 
 #: lib/WPCLandingPage.php:24 lib/WPCLandingPage.php:39
 msgid "Please go on..."

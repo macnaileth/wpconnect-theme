@@ -44,19 +44,61 @@ class WPCUtilities {
         // If we have options lets sanitize them
         if ($options) {
 
-            // Checkbox
+            // Checkbox redirect
             if (!empty($options['wpc_redirect'])) {
                 $options['wpc_redirect'] = 'on';
             } else {
                 unset($options['wpc_redirect']); // Remove from options if not checked
             }
 
-            // Input
+            // Input redirect
             if (!empty($options['wpc_redirect'])) {   
                 $options['wpc_redirect'] = sanitize_text_field($options['wpc_redirect']);
             } else {
                 unset($options['wpc_redirect']); // Remove from options if empty or invalid
             }
+            
+            // Input frontend bg color
+            if (!empty($options['wpc-fr-bg-color'])) {   
+                $options['wpc-fr-bg-color'] = sanitize_text_field($options['wpc-fr-bg-color']);
+            } else {
+                $options['wpc-fr-bg-color'] = '#0F595D'; // set default color
+            }   
+            
+            // Input frontend body text color
+            if (!empty($options['wpc-fr-txt-color'])) {   
+                $options['wpc-fr-txt-color'] = sanitize_text_field($options['wpc-fr-bg-color']);
+            } else {
+                $options['wpc-fr-txt-color'] = '#262D2E'; // set default color
+            }   
+            
+            // Input frontend headline text color
+            if (!empty($options['wpc-fr-hdl-color'])) {   
+                $options['wpc-fr-hdl-color'] = sanitize_text_field($options['wpc-fr-hdl-color']);
+            } else {
+                $options['wpc-fr-hdl-color'] = '#262D2E'; // set default color
+            }  
+            
+            // Input content container bg color
+            if (!empty($options['wpc-fr-cbg-color'])) {   
+                $options['wpc-fr-cbg-color'] = sanitize_text_field($options['wpc-fr-cbg-color']);
+            } else {
+                $options['wpc-fr-cbg-color'] = '#ffffff'; // set default color
+            }  
+            
+            // Input button bg color
+            if (!empty($options['wpc-fr-btn-color'])) {   
+                $options['wpc-fr-btn-color'] = sanitize_text_field($options['wpc-fr-btn-color']);
+            } else {
+                $options['wpc-fr-btn-color'] = '#0F595D'; // set default color
+            }       
+            
+            // Input button text color
+            if (!empty($options['wpc-fr-btt-color'])) {   
+                $options['wpc-fr-btt-color'] = sanitize_text_field($options['wpc-fr-btn-color']);
+            } else {
+                $options['wpc-fr-btt-color'] = '#fff'; // set default color
+            }              
 
             // Select
             if (!empty($options['select_example'])) {
