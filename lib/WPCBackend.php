@@ -73,7 +73,8 @@ class WPCBackend {
                                 <th scope="row"><?php esc_html_e('Redirect URL', 'tsu-wpconnect-theme'); ?></th>
                                 <td>
                                     <?php $value = WPCUtilities::wpc_get_theme_option('wpc_redirect_uri'); ?>
-                                    <input type="text" name="wpc_options[wpc_redirect_uri]" value="<?php echo esc_attr($value); ?>">
+                                    <input type="text" class="wpc-input-limited" maxlength="80" name="wpc_options[wpc_redirect_uri]" value="<?php echo esc_attr($value); ?>">
+                                    <?php WPCUtilities::wpc_charcounter(); ?>
                                 </td>
                             </tr>
 
@@ -103,6 +104,15 @@ class WPCBackend {
                         <hr />
                         <h1 class="wp-heading-inline"><?php echo esc_html__( 'Landing/Redirect page settings', 'tsu-wpconnect-theme' ); ?></h1>
                         <table class="form-table wpc-admin-lpsetup-table">
+                            <?php // Headline text ?>
+                            <tr valign="top">
+                                <th scope="row"><?php esc_html_e('Headline text', 'tsu-wpconnect-theme'); ?></th>
+                                <td>
+                                    <?php $value = WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text'); ?>
+                                    <input type="text" class="wpc-input-limited" maxlength="50" name="wpc_options[wpc-fr-hdl-text]" id="wpc-fr-hdl-text" value="<?php echo !empty($value) ? esc_attr($value) : esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ); ?>">
+                                    <?php WPCUtilities::wpc_charcounter(); ?>
+                                </td>
+                            </tr>                            
                             <?php // Body BG Color ?>
                             <tr valign="top">
                                 <th scope="row"><?php esc_html_e('Body background color', 'tsu-wpconnect-theme'); ?></th>

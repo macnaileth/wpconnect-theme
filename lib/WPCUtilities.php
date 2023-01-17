@@ -58,6 +58,13 @@ class WPCUtilities {
                 unset($options['wpc_redirect']); // Remove from options if empty or invalid
             }
             
+            // Input frontend headline
+            if (!empty($options['wpc-fr-hdl-text'])) {   
+                $options['wpc-fr-hdl-text'] = sanitize_text_field($options['wpc_fr_hdl_text']);
+            } else {
+                $options['wpc-fr-hdl-text'] = esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ); // set default text
+            }            
+            
             // Input frontend bg color
             if (!empty($options['wpc-fr-bg-color'])) {   
                 $options['wpc-fr-bg-color'] = sanitize_text_field($options['wpc-fr-bg-color']);
@@ -131,5 +138,20 @@ class WPCUtilities {
         }
         echo $js_code;
     }   
-
+    /**
+     * wpc_charcounter()
+     * 
+     * adds a charcounting label to a input field
+     * input field must have a maxlength attribute
+     * and the class wpc-input-limited
+     */
+    public static function wpc_charcounter() {        
+        ?>
+            <label class="wpc-word-counter wpc-label-small" for="wpc-fr-hdl-text">
+                <span class="wpc-label-txt"><?php echo esc_html__('Remaining chars', 'tsu-wpconnect-theme') . ': '; ?></span>
+                <span class="wpc-counter-num"></span>
+            </label>
+        <?php
+        
+    }
 }

@@ -13,6 +13,7 @@ namespace lib;
 class WPCLandingPage {
     //put your code here
     public static function wpc_create_lp( $logoimg, $uri, $type = 'SUCCESS' ) {
+        
         if ($type === "SUCCESS") {
             ?>
                 <div class="container">
@@ -21,7 +22,12 @@ class WPCLandingPage {
                             <img class="wpc-logo-large" src="<?php echo $logoimg; ?>">
                         </div>
                         <div class="column">
-                            <h1><?php esc_html_e('Please go on...', 'tsu-wpconnect-theme'); ?></h1>
+                            <h1><?php 
+                                    echo !empty(WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text')) ? 
+                                            WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text') : 
+                                            esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ); 
+                                ?>
+                            </h1>
                             <p><?php esc_html_e('You arrived at the pages of', 'tsu-wpconnect-theme'); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('We regret that this is not the correct page. To access our content, click the button below.', 'tsu-wpconnect-theme'); ?></p>
                             <a class="wpc-redirect-button" href="<?php echo $uri ?>"><?php esc_html_e('Continue to', 'tsu-wpconnect-theme'); ?> <?php bloginfo('name'); ?></a>
                         </div>
@@ -36,7 +42,12 @@ class WPCLandingPage {
                             <img class="wpc-logo-large" src="<?php echo $logoimg; ?>">
                         </div>
                         <div class="column">
-                            <h1><?php esc_html_e('Please go on...', 'tsu-wpconnect-theme'); ?></h1>
+                            <h1><?php 
+                                    echo !empty(WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text')) ? 
+                                            WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text') : 
+                                            esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ); 
+                                ?>
+                            </h1>
                             <p><?php esc_html_e('You arrived at the pages of', 'tsu-wpconnect-theme'); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('We regret that this is not the correct page.', 'tsu-wpconnect-theme'); ?></p>
                         </div>
                     </div>

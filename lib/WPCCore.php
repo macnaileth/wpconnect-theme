@@ -120,6 +120,7 @@ class WPCCore {
         if( $pagenow == 'admin.php' ){
             if ( $_GET['page'] == 'wpc_settings' ) {
                 wp_enqueue_script('wpc-admin-default-js', $this->themeURI . '/js/wpc-adminjs.js', array( 'wp-color-picker' ), false, true);
+                wp_enqueue_style( 'wpc-admin-style', $this->themeURI . '/css/wpc-admin.css', array(), $this->versionNum  ); 
             } 
             if ($_GET['page'] == 'wpc_settings') {   
                 //load colorpicker

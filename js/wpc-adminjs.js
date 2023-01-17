@@ -7,6 +7,14 @@
     Author     : marconagel
 */
 jQuery(document).ready(function($){
+    //initalize limited input fields
+    $('.wpc-input-limited').each(function() {
+        $( this ).closest('td').find( ".wpc-counter-num" ).text( $( this ).attr( "maxlength" ) - $( this ).val().length  );
+    });
     //initalize color picker
-    $('.wpc-color-picker').wpColorPicker();
+    $( '.wpc-color-picker' ).wpColorPicker();
+    //do counter
+    $( ".wpc-input-limited" ).keyup(function() {
+        $( this ).closest('td').find( ".wpc-counter-num" ).text( $( this ).attr( "maxlength" ) - $( this ).val().length  );
+    });
 });

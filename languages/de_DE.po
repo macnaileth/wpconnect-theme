@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-01-16 21:38+0100\n"
+"POT-Creation-Date: 2023-01-17 22:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -106,38 +106,47 @@ msgid "Landing/Redirect page settings"
 msgstr "Einstellungen für die Landing-/Redirect-Seite"
 
 #: lib/WPCBackend.php:108
-msgid "Body background color"
-msgstr "Body-Hintergrundfarbe"
+msgid "Headline text"
+msgstr "Text der Überschrift"
 
-#: lib/WPCBackend.php:117
-msgid "Body text color"
-msgstr "Body-Textfarbe"
-
-#: lib/WPCBackend.php:126
-msgid "Body headline color"
-msgstr "Überschriftenfarbe"
-
-#: lib/WPCBackend.php:135
-msgid "Content container background color"
-msgstr "Hintergrund des Inhaltscontainers"
-
-#: lib/WPCBackend.php:144
-msgid "Button color"
-msgstr "Button-Farbe"
-
-#: lib/WPCBackend.php:153
-msgid "Button text color"
-msgstr "Button-Textfarbe"
-
-#: lib/WPCLandingPage.php:24 lib/WPCLandingPage.php:39
+#: lib/WPCBackend.php:111 lib/WPCLandingPage.php:28 lib/WPCLandingPage.php:48
+#: lib/WPCUtilities.php:65
 msgid "Please go on..."
 msgstr "Bitte gehen Sie weiter…"
 
-#: lib/WPCLandingPage.php:25 lib/WPCLandingPage.php:40
+#: lib/WPCBackend.php:112
+msgid "Remaining chars"
+msgstr "Verbleibende Zeichen"
+
+#: lib/WPCBackend.php:117
+msgid "Body background color"
+msgstr "Body-Hintergrundfarbe"
+
+#: lib/WPCBackend.php:126
+msgid "Body text color"
+msgstr "Body-Textfarbe"
+
+#: lib/WPCBackend.php:135
+msgid "Body headline color"
+msgstr "Überschriftenfarbe"
+
+#: lib/WPCBackend.php:144
+msgid "Content container background color"
+msgstr "Hintergrund des Inhaltscontainers"
+
+#: lib/WPCBackend.php:153
+msgid "Button color"
+msgstr "Button-Farbe"
+
+#: lib/WPCBackend.php:162
+msgid "Button text color"
+msgstr "Button-Textfarbe"
+
+#: lib/WPCLandingPage.php:31 lib/WPCLandingPage.php:51
 msgid "You arrived at the pages of"
 msgstr "Sie gelangten auf die Seiten von"
 
-#: lib/WPCLandingPage.php:25
+#: lib/WPCLandingPage.php:31
 msgid ""
 "We regret that this is not the correct page. To access our content, click "
 "the button below."
@@ -145,17 +154,17 @@ msgstr ""
 "Wir bedauern, dass dies nicht die richtige Seite ist. Um auf unsere Inhalte "
 "zuzugreifen, klicken Sie auf die Schaltfläche unten."
 
-#: lib/WPCLandingPage.php:26
+#: lib/WPCLandingPage.php:32
 msgid "Continue to"
 msgstr "Weiter zu"
 
-#: lib/WPCLandingPage.php:40
+#: lib/WPCLandingPage.php:51
 msgid "We regret that this is not the correct page."
 msgstr ""
 "Wir bedauern, dass dies nicht die richtige Seite ist. Um auf unsere Inhalte "
 "zuzugreifen, klicken Sie auf die Schaltfläche unten."
 
-#: lib/WPCLandingPage.php:46
+#: lib/WPCLandingPage.php:57
 msgid ""
 "If you hit this screen, something regarding the web frontend was configured "
 "in a very wrong way. There was no landing page type defined. Contact site "

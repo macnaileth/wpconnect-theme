@@ -1,0 +1,42 @@
+/*
+wpc-admin.css
+---------------
+Stylesheet for the admin pages
+*/
+/* 
+    Created on : 15.01.2023, 15:50:54
+    Author     : marconagel
+*/
+.wpc-word-counter {
+    text-align: right;
+    display: block;
+    margin-right: 3px;   
+}
+.wpc-label-small {
+    font-size: 0.75rem;
+    color: #8c8f95;    
+}
+.wpc-input-limited {
+    padding-right: 25px !important;
+}
+.wpc-label-txt {
+    display: inline;
+}
+/* breakpoints */
+@media (min-width: 783px) { 
+    .wpc-word-counter {
+        display: inline;
+        margin-left: -30px;
+        background-color: #fff;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        padding-top: 2px;
+        position: relative;
+        top: 1px;
+        padding-left: 4px;    
+    }   
+.wpc-label-txt {
+    display: none;
+}    
+}
+
