@@ -35,6 +35,10 @@ $dir = lib\WPCUtilities::wpc_dirs();
             
             $resolvedURI = '';
 
+            //get image for frontend page
+            $image_data = lib\WPCUtilities::wpc_get_theme_option('wpc-fr-image');
+            $display_image = lib\WPCUtilities::wpc_imagelink($image_data);                   
+
             if ( !empty($redirectURI) && preg_match("/^$regex$/i", $redirectURI) ) {                             
                 
                 $resolvedURI = strpos($redirectURI, "http://") === false && strpos($redirectURI, "https://") === false ? "http://" . $redirectURI : $redirectURI;     
@@ -53,7 +57,7 @@ $dir = lib\WPCUtilities::wpc_dirs();
                 
                 } else {
                     //success, no redirection
-                    lib\WPCLandingPage::wpc_create_lp( $dir['uri'] . '/img/wpconnect2023.svg', $resolvedURI, 'SUCCESS');
+                    lib\WPCLandingPage::wpc_create_lp( $display_image === '' ? $dir['uri'] . '/img/wpconnect2023.svg': $display_image, $resolvedURI, 'SUCCESS');
                     //log it
                     lib\WPCUtilities::wpc_console_log( esc_html__('*** Landing page mounted successfully! ***', 'tsu-wpconnect-theme') );
                     
@@ -61,7 +65,7 @@ $dir = lib\WPCUtilities::wpc_dirs();
                 
             } else {   
                 //error resolving uri
-                lib\WPCLandingPage::wpc_create_lp( $dir['uri'] . '/img/wpconnect2023.svg', $resolvedURI, 'ERROR');
+                lib\WPCLandingPage::wpc_create_lp( $display_image === '' ? $dir['uri'] . '/img/wpconnect2023.svg': $display_image, $resolvedURI, 'ERROR');
                 //log it also
                 lib\WPCUtilities::wpc_console_log( esc_html__('*** Landing page mounting error: Redirect/Application-URL not defined! ***', 'tsu-wpconnect-theme') );                
                 

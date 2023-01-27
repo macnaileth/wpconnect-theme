@@ -51,19 +51,54 @@ class WPCUtilities {
                 unset($options['wpc_redirect']); // Remove from options if not checked
             }
 
-            // Input redirect
+            // Checkbox button
+            if (!empty($options['wpc_rebutton'])) {
+                $options['wpc_rebutton'] = 'on';
+            } else {
+                unset($options['wpc_rebutton']); // Remove from options if not checked
+            }            
+
+            // Input redirect wpc-fr-image
             if (!empty($options['wpc_redirect'])) {   
                 $options['wpc_redirect'] = sanitize_text_field($options['wpc_redirect']);
             } else {
                 unset($options['wpc_redirect']); // Remove from options if empty or invalid
             }
+
+            // Input logo image
+            if (!empty($options['wpc-fr-image'])) {   
+                $options['wpc-fr-image'] = sanitize_text_field($options['wpc-fr-image']);
+            } else {
+                unset($options['wpc-fr-image']); // Remove from options if empty or invalid
+            }        
+
+            // Headline Font URL
+            if (!empty($options['wpc-fr-hdl-font'])) {   
+                $options['wpc-fr-hdl-font'] = sanitize_text_field($options['wpc-fr-hdl-font']);
+            } else {
+                unset($options['wpc-fr-hdl-font']); // Remove from options if empty or invalid
+            }             
+            
+            // Content Font URL
+            if (!empty($options['wpc-fr-cnt-font'])) {   
+                $options['wpc-fr-cnt-font'] = sanitize_text_field($options['wpc-fr-cnt-font']);
+            } else {
+                unset($options['wpc-fr-cnt-font']); // Remove from options if empty or invalid
+            }               
             
             // Input frontend headline
             if (!empty($options['wpc-fr-hdl-text'])) {   
                 $options['wpc-fr-hdl-text'] = sanitize_text_field($options['wpc_fr_hdl_text']);
             } else {
                 $options['wpc-fr-hdl-text'] = esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ); // set default text
-            }            
+            }        
+
+            // textfield frontend
+            if (!empty($options['wpc-fr-cnt-text'])) {   
+                $options['wpc-fr-cnt-text'] = sanitize_text_field($options['wpc-fr-cnt-text']);
+            } else {
+                $options['wpc-fr-cnt-text'] = esc_html__('You arrived at the pages of', 'tsu-wpconnect-theme') . ' ' . get_bloginfo('name') . '. ' . esc_html__('We regret that this is not the correct page. To access our content, click the button below.', 'tsu-wpconnect-theme');  // set default text
+            }               
             
             // Input frontend bg color
             if (!empty($options['wpc-fr-bg-color'])) {   
@@ -154,4 +189,59 @@ class WPCUtilities {
         <?php
         
     }
+    /**
+     * wpc_fileexists( $link )
+     * 
+     * function to check whether a file behind a link exists or not
+     * returns true if existing, false if not.
+     * 
+     * @param string $link  Link/url to check
+     * @return boolean 
+     */
+    public static function wpc_fileexists( $link ) {
+        $file = $link;
+        if (!empty($link)){
+            $file_headers = @get_headers($file);
+            if(!$file_headers || strpos($file_headers[0], '404')) {
+                return false;
+            }
+            else {
+                return true;
+            }   
+        } else {
+            return false;
+        }
+    }
+    /**
+     * wpc_imagelink( $linknum, $size = 'full' )
+     * 
+     * function to return an image according to input: if a link is used,
+     * it is checked if existing and returned if so. If numeric input e.g.
+     * WordPress Image ID is used, the image is retrieved from media lib and
+     * returned.
+     * 
+     * @param string $linknum   URL or image ID.
+     * @param string $size      parameter for image output. WordPress standard formats are:
+     *                          Thumbnail | Medium | Medium Large | Large | Full [default]
+     * @return string           Returns link on success, empty string on error 
+     */
+    public static function wpc_imagelink( $linknum, $size = 'full' ) {
+        
+            $display_image = '';
+
+            //check if image is what it should be
+            if(is_numeric($linknum)){
+                //wordpress image id
+                $image_arr = wp_get_attachment_image_src($linknum, $size);  
+                $display_image = $image_arr[0];
+
+            } else {
+                //link - check if existing
+                if( self::wpc_fileexists($linknum) ){
+                    $display_image = $linknum;
+                }    
+            } 
+            return $display_image;
+    }
+    
 }

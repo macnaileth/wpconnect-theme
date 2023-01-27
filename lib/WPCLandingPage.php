@@ -14,6 +14,17 @@ class WPCLandingPage {
     //put your code here
     public static function wpc_create_lp( $logoimg, $uri, $type = 'SUCCESS' ) {
         
+        //retrieve needed options for content       
+        
+        //default string for content text
+        $default_text = esc_html__('You arrived at the pages of', 'tsu-wpconnect-theme') . ' ' . get_bloginfo('name') . '. ' . esc_html__('We regret that this is not the correct page. To access our content, click the button below.', 'tsu-wpconnect-theme');
+        //button state
+        $button_state = WPCUtilities::wpc_get_theme_option('wpc_rebutton');
+        $content = [ 
+            'headline' => !empty(WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text')) ? WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text') : esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ),
+            'text' => !empty(WPCUtilities::wpc_get_theme_option('wpc-fr-cnt-text')) ? WPCUtilities::wpc_get_theme_option('wpc-fr-cnt-text') : $default_text ];
+        
+        
         if ($type === "SUCCESS") {
             ?>
                 <div class="container">
@@ -22,14 +33,11 @@ class WPCLandingPage {
                             <img class="wpc-logo-large" src="<?php echo $logoimg; ?>">
                         </div>
                         <div class="column">
-                            <h1><?php 
-                                    echo !empty(WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text')) ? 
-                                            WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text') : 
-                                            esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ); 
-                                ?>
-                            </h1>
-                            <p><?php esc_html_e('You arrived at the pages of', 'tsu-wpconnect-theme'); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('We regret that this is not the correct page. To access our content, click the button below.', 'tsu-wpconnect-theme'); ?></p>
-                            <a class="wpc-redirect-button" href="<?php echo $uri ?>"><?php esc_html_e('Continue to', 'tsu-wpconnect-theme'); ?> <?php bloginfo('name'); ?></a>
+                            <h1><?php echo $content['headline']; ?></h1>
+                            <p><?php echo $content['text']; ?></p>
+                            <?php if ( $button_state == 'on' ): ?>
+                                <a class="wpc-redirect-button" href="<?php echo $uri ?>"><?php esc_html_e('Continue to', 'tsu-wpconnect-theme'); ?> <?php bloginfo('name'); ?></a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -42,13 +50,8 @@ class WPCLandingPage {
                             <img class="wpc-logo-large" src="<?php echo $logoimg; ?>">
                         </div>
                         <div class="column">
-                            <h1><?php 
-                                    echo !empty(WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text')) ? 
-                                            WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-text') : 
-                                            esc_html__( 'Please go on...', 'tsu-wpconnect-theme' ); 
-                                ?>
-                            </h1>
-                            <p><?php esc_html_e('You arrived at the pages of', 'tsu-wpconnect-theme'); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('We regret that this is not the correct page.', 'tsu-wpconnect-theme'); ?></p>
+                            <h1><?php echo $content['headline']; ?></h1>
+                            <p><?php echo $content['text']; ?></p>
                         </div>
                     </div>
                 </div>

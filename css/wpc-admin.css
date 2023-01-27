@@ -22,21 +22,75 @@ Stylesheet for the admin pages
 .wpc-label-txt {
     display: inline;
 }
+.wpc-tarea-noresize {
+    resize: none;
+}
+.wpc-logo-be {
+    max-width: 600px;
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #8c8f94;    
+}
+.wpc-settings-buttons {
+    border-bottom: 1px solid #8c8f94;
+}
+.wpc-tab-btn {
+    text-decoration: none;
+    padding-left: 0.25rem;
+    border-style: solid solid none;
+    border-width: 1px 1px 1px;
+    margin-right: 0.25rem;
+    padding-right: 0.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 2px; 
+    color: #fff;
+    background-color: #2271b1;
+    border-color: #2271b1;    
+}
+.wpc-tab-btn:hover, .wpc-tab-btn:active {
+    color: #fff;
+    background-color: #135e96;
+    border-color: #135e96;      
+}
+.wpc-tab-btn.active {
+    border-bottom-color: #f0f0f1 !important;
+    border-bottom-style: solid !important; 
+    background-color: #f0f0f1 !important; 
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+    color: #8c8f94 !important;    
+    border-color: #8c8f94;
+    background-color: #8c8f94;    
+}
+.wpc-settings.active {
+    display: block;
+}
+.wpc-settings {
+    display: none;
+}
 /* breakpoints */
 @media (min-width: 783px) { 
     .wpc-word-counter {
         display: inline;
-        margin-left: -30px;
-        background-color: #fff;
+        background-color: #fff;    
         margin-bottom: 15px;
         padding-bottom: 5px;
         padding-top: 2px;
-        position: relative;
+        position: relative;  
+        padding-left: 4px; 
+    }
+    input + .wpc-word-counter {
         top: 1px;
-        padding-left: 4px;    
-    }   
-.wpc-label-txt {
-    display: none;
-}    
+        margin-left: -30px;         
+    }  
+    textarea + .wpc-word-counter {
+        top: -7px;
+        margin-left: -35px;        
+    }     
+    .wpc-label-txt {
+        display: none;
+    }    
 }
 

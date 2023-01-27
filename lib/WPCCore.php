@@ -51,29 +51,34 @@ class WPCCore {
      */    
     public function wpc_fr_inline_css() {
         //get frontend style vars
+        
+        //fonts
+        $headline_font = WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-font');
+        $content_font = WPCUtilities::wpc_get_theme_option('wpc-fr-cnt-font');
+        
         $lp_settings = [
             "bodybg-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-bg-color'),
             "bodytxt-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-txt-color'),
             "bodyhead-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-hdl-color'),
             "container-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-cbg-color'),
             "buttonbg-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-btn-color'),
-            "buttontxt-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-btt-color')
+            "buttontxt-color" => WPCUtilities::wpc_get_theme_option('wpc-fr-btt-color'),
+            "headline-font" => !empty( $headline_font ) ? $headline_font : $this->themeURI . '/fonts/LeckerliOne.woff',
+            "content-font" => !empty( $content_font ) ? $content_font : $this->themeURI . '/fonts/FengardoNeue.woff'
         ];
         ?>
             <style type="text/css">
                 @font-face {
-                    font-family: 'Fengardo Neue';
-                    src: url('<?php echo $this->themeURI ?>/fonts/FengardoNeue.woff2') format('woff2'),
-                        url('<?php echo $this->themeURI ?>/fonts/FengardoNeue.woff') format('woff');
+                    font-family: 'Content Text';
+                    src: url('<?php echo $lp_settings["content-font"]; ?>') format('woff');
                     font-weight: normal;
                     font-style: normal;
                     font-display: swap;
                 }
 
                 @font-face {
-                    font-family: 'LeckerliOne';
-                    src: url('<?php echo $this->themeURI ?>/fonts/LeckerliOne.woff2') format('woff2'),
-                        url('<?php echo $this->themeURI ?>/fonts/LeckerliOne.woff') format('woff');
+                    font-family: 'Headline Text';
+                    src: url('<?php echo $lp_settings["headline-font"]; ?>') format('woff');
                     font-weight: normal;
                     font-style: normal;
                     font-display: swap;

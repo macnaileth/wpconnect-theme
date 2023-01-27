@@ -11,12 +11,12 @@ this is very small and somehow bootstrap orientated :-)
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Fengardo Neue', sans-serif;
+    font-family: 'Content Text', sans-serif;
     line-height: 150%;
 }
 
 h1 {
-    font-family: 'LeckerliOne', sans-serif;
+    font-family: 'Headline Text', sans-serif;
 }
 
 .container {
