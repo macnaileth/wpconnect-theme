@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-01-27 15:25+0100\n"
+"POT-Creation-Date: 2023-01-29 16:25+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -85,23 +85,27 @@ msgstr ""
 msgid "Redirect URL"
 msgstr "Weiterleitungs-URL"
 
-#: lib/WPCBackend.php:88
+#: lib/WPCBackend.php:87
 msgid "Landing page"
 msgstr "Landing Page"
 
-#: lib/WPCBackend.php:91 lib/WPCBackend.php:227
+#: lib/WPCBackend.php:90
+msgid "Structure"
+msgstr "Struktur"
+
+#: lib/WPCBackend.php:93 lib/WPCBackend.php:265
 msgid "API settings"
 msgstr "API Einstellungen"
 
-#: lib/WPCBackend.php:96
+#: lib/WPCBackend.php:98
 msgid "Landing/Redirect page settings"
 msgstr "Einstellungen für die Landing-/Redirect-Seite"
 
-#: lib/WPCBackend.php:101
+#: lib/WPCBackend.php:103
 msgid "Logo or other image"
 msgstr "Logo oder anderes Bild"
 
-#: lib/WPCBackend.php:112
+#: lib/WPCBackend.php:114
 msgid ""
 "You can either use a link to an image or the numeric id of the image used in "
 "the WordPress media library."
@@ -109,23 +113,42 @@ msgstr ""
 "Sie können entweder einen Link zu einem Bild oder die numerische ID des "
 "Bildes verwenden, welche in der WordPress-Medienbibliothek verwendet wird."
 
-#: lib/WPCBackend.php:118
+#: lib/WPCBackend.php:127 lib/WPCBackend.php:134 lib/WPCBackend.php:141
+msgid "Favicon for size"
+msgstr "Favicon für Größe"
+
+#: lib/WPCBackend.php:146
+msgid ""
+"Linked image will be encoded base64 on the fly - keep them small. Always "
+"use .png!"
+msgstr ""
+"Verknüpfte Bilder werden base64 im laufenden Betrieb kodiert - halten Sie "
+"sie klein. Verwenden Sie immer .png!"
+
+#: lib/WPCBackend.php:147
+msgid ""
+"You do not need to fill in all image sizes. Blank fields will not be used."
+msgstr ""
+"Sie müssen nicht alle Bildgrößen verwenden. Leere Felder werden nicht "
+"verwendet."
+
+#: lib/WPCBackend.php:153
 msgid "Headline text"
 msgstr "Text der Überschrift"
 
-#: lib/WPCBackend.php:121 lib/WPCLandingPage.php:24 lib/WPCUtilities.php:93
+#: lib/WPCBackend.php:156 lib/WPCLandingPage.php:24 lib/WPCUtilities.php:121
 msgid "Please go on..."
 msgstr "Bitte gehen Sie weiter…"
 
-#: lib/WPCBackend.php:128
+#: lib/WPCBackend.php:163
 msgid "Content text"
 msgstr "Inhalt"
 
-#: lib/WPCBackend.php:131 lib/WPCLandingPage.php:20 lib/WPCUtilities.php:100
+#: lib/WPCBackend.php:166 lib/WPCLandingPage.php:20 lib/WPCUtilities.php:128
 msgid "You arrived at the pages of"
 msgstr "Sie gelangten auf die Seiten von"
 
-#: lib/WPCBackend.php:131 lib/WPCLandingPage.php:20 lib/WPCUtilities.php:100
+#: lib/WPCBackend.php:166 lib/WPCLandingPage.php:20 lib/WPCUtilities.php:128
 msgid ""
 "We regret that this is not the correct page. To access our content, click "
 "the button below."
@@ -133,46 +156,67 @@ msgstr ""
 "Wir bedauern, dass dies nicht die richtige Seite ist. Um auf unsere Inhalte "
 "zuzugreifen, klicken Sie auf die Schaltfläche unten."
 
-#: lib/WPCBackend.php:138
+#: lib/WPCBackend.php:173
 msgid "Redirection button"
 msgstr "Schaltfläche \"Umleitung\""
 
-#: lib/WPCBackend.php:141
+#: lib/WPCBackend.php:176
 msgid "Button to redirect to the url where your app resides."
 msgstr ""
 "Schaltfläche, um zu der URL umzuleiten, unter der sich Ihre App befindet."
 
-#: lib/WPCBackend.php:147
+#: lib/WPCBackend.php:182
 msgid "URL to the headline font in .woff format"
 msgstr "URL zur Überschriftenschriftart im .woff-Format"
 
-#: lib/WPCBackend.php:157
+#: lib/WPCBackend.php:192
 msgid "URL to the content font in .woff format"
 msgstr "URL zur Inhaltsschriftart im WOFF-Format"
 
-#: lib/WPCBackend.php:167
+#: lib/WPCBackend.php:202
 msgid "Body background color"
 msgstr "Body-Hintergrundfarbe"
 
-#: lib/WPCBackend.php:177
+#: lib/WPCBackend.php:212
 msgid "Body text color"
 msgstr "Body-Textfarbe"
 
-#: lib/WPCBackend.php:187
+#: lib/WPCBackend.php:222
 msgid "Body headline color"
 msgstr "Überschriftenfarbe"
 
-#: lib/WPCBackend.php:197
+#: lib/WPCBackend.php:232
 msgid "Content container background color"
 msgstr "Hintergrund des Inhaltscontainers"
 
-#: lib/WPCBackend.php:207
+#: lib/WPCBackend.php:242
 msgid "Button color"
 msgstr "Button-Farbe"
 
-#: lib/WPCBackend.php:217
+#: lib/WPCBackend.php:252
 msgid "Button text color"
 msgstr "Button-Textfarbe"
+
+#: lib/WPCBackend.php:262
+msgid "Menu structure setup"
+msgstr "Einrichtung der Menüstruktur"
+
+#: lib/WPCBackend.php:270
+msgid ""
+"No menu structure found. To start creating a menu structure for your content "
+"useable via API access click the button below."
+msgstr ""
+"Keine Menüstruktur gefunden. Um eine Menüstruktur für Ihre Inhalte zu "
+"erstellen, die über den API-Zugriff verwendet werden kann, klicken Sie auf "
+"die Schaltfläche unten."
+
+#: lib/WPCBackend.php:271
+msgid "Create menu structure"
+msgstr "Menüstruktur erstellen"
+
+#: lib/WPCBackend.php:273
+msgid "Add menu structure"
+msgstr "Menüstruktur hinzufügen"
 
 #: lib/WPCLandingPage.php:39
 msgid "Continue to"
@@ -188,9 +232,12 @@ msgstr ""
 "sehr falsch konfiguriert. Es wurde kein Landingpage-Typ definiert. Wenden "
 "Sie sich an den Site-Administrator:"
 
-#: lib/WPCUtilities.php:186
+#: lib/WPCUtilities.php:214
 msgid "Remaining chars"
 msgstr "Verbleibende Zeichen"
+
+#~ msgid "Favicons"
+#~ msgstr "Favicons"
 
 #~ msgid "We regret that this is not the correct page."
 #~ msgstr ""

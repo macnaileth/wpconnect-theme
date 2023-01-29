@@ -86,6 +86,9 @@ class WPCBackend {
                             <a href="#" class="wpc-tab-btn active" data-target="#wpc_settings_frontend">
                                 <?php echo esc_html__( 'Landing page', 'tsu-wpconnect-theme' ); ?>
                             </a>  
+                            <a href="#" class="wpc-tab-btn" data-target="#wpc_settings_structure">
+                                <?php echo esc_html__( 'Structure', 'tsu-wpconnect-theme' ); ?>
+                            </a>                             
                             <a href="#" class="wpc-tab-btn" data-target="#wpc_settings_api">
                                 <?php echo esc_html__( 'API settings', 'tsu-wpconnect-theme' ); ?>
                             </a>                               
@@ -111,6 +114,39 @@ class WPCBackend {
                                             <p><?php esc_html_e('You can either use a link to an image or the numeric id of the image used in the WordPress media library.', 'tsu-wpconnect-theme'); ?></p>
                                         </td>
                                     </tr> 
+                                    
+                                    <?php 
+                                        // favicons 16x16, 32x32, 96x96 
+                                        $favs = [
+                                                    '16x16' => WPCUtilities::wpc_get_theme_option('wpc-fr-16x16'),
+                                                    '32x32' => WPCUtilities::wpc_get_theme_option('wpc-fr-32x32'),
+                                                    '96x96' => WPCUtilities::wpc_get_theme_option('wpc-fr-96x96')
+                                                ];
+                                    ?>
+                                    <tr valign="top">
+                                        <th scope="row"><?php esc_html_e('Favicon for size', 'tsu-wpconnect-theme'); ?> 16x16</th>
+                                        <td>
+                                            <input type="text" class="wpc-input-limited" maxlength="150" name="wpc_options[wpc-fr-16x16]" id="wpc-fr-16x16" value="<?php echo esc_attr($favs['16x16']); ?>">
+                                            <?php WPCUtilities::wpc_charcounter(); ?>
+                                        </td>
+                                    </tr>                                        
+                                    <tr valign="top">
+                                        <th scope="row"><?php esc_html_e('Favicon for size', 'tsu-wpconnect-theme'); ?> 32x32</th>
+                                        <td>                                        
+                                            <input type="text" class="wpc-input-limited" maxlength="150" name="wpc_options[wpc-fr-32x32]" id="wpc-fr-32x32" value="<?php echo esc_attr($favs['32x32']); ?>">
+                                            <?php WPCUtilities::wpc_charcounter(); ?>
+                                        </td>  
+                                    </tr>                                        
+                                    <tr valign="top">
+                                        <th scope="row"><?php esc_html_e('Favicon for size', 'tsu-wpconnect-theme'); ?> 96x96</th>
+                                        <td>                                         
+                                            <input type="text" class="wpc-input-limited" maxlength="150" name="wpc_options[wpc-fr-96x96]" id="wpc-fr-96x96" value="<?php echo esc_attr($favs['96x96']); ?>">
+                                            <?php WPCUtilities::wpc_charcounter(); ?>
+                                            <br />                                                
+                                            <p><?php esc_html_e('Linked image will be encoded base64 on the fly - keep them small. Always use .png!', 'tsu-wpconnect-theme'); ?></p>
+                                            <p><i><?php esc_html_e('You do not need to fill in all image sizes. Blank fields will not be used.', 'tsu-wpconnect-theme'); ?></i></p>
+                                        </td>
+                                    </tr>                                    
 
                                     <?php // Headline text ?>
                                     <tr valign="top">
@@ -222,8 +258,22 @@ class WPCBackend {
                                     </tr>                            
                                 </table>
                             </div>
+                            <div class="wpc-settings" id="wpc_settings_structure">
+                                <h1 class="wp-heading-inline"><?php echo esc_html__( 'Menu structure setup', 'tsu-wpconnect-theme' ); ?></h1>  
+                                <?php 
+                                    // Menu structure
+                                    $menu = WPCUtilities::wpc_get_theme_option('wpc-menu-structure'); 
+                                    if ( empty($menu) ) {
+                                        echo '<p><i>' . esc_html__('No menu structure found. To start creating a menu structure for your content useable via API access click the button below.', 'tsu-wpconnect-theme') . '</i></p><br />';
+                                        echo '<button type="button" class="button wpc-create-menu" id="wpc_lvl_1_menu">' . esc_html__('Create menu structure', 'tsu-wpconnect-theme') . '</button>';
+                                    } else {
+                                        echo '<button type="button" class="button wpc-create-menu" id="wpc_lvl_1_menu">' . esc_html__('Add menu structure', 'tsu-wpconnect-theme') . '</button>';
+                                    }
+                                ?>
+                                <input type="hidden" class="wpc-hidden-input" name="wpc_options[wpc-menu-structure]" id="wpc-menu-structure" value="<?php echo esc_attr($menu); ?>">                                  
+                            </div>                            
                             <div class="wpc-settings" id="wpc_settings_api">
-                                <h1 class="wp-heading-inline"><?php echo esc_html__( 'API settings', 'tsu-wpconnect-theme' ); ?></h1>    
+                                <h1 class="wp-heading-inline"><?php echo esc_html__( 'API settings', 'tsu-wpconnect-theme' ); ?></h1>                                
                             </div>
                         </div>
                     <?php submit_button(); ?>

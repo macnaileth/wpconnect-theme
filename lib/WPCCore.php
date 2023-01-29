@@ -31,10 +31,12 @@ class WPCCore {
         add_action( 'after_setup_theme', array( $this, 'wpc_language_setup' ) );
         //load frontend fonts
         add_action( 'wp_head', array( $this, 'wpc_fr_inline_css' ) );
+        //load favicon stuff for frontend
+        add_action( 'wp_head', array( $this, 'wpc_fr_icons' ) );
         //load frontend css & scripts
         add_action( 'wp_enqueue_scripts', array( $this, 'wpc_fr_scripts' ) ); 
         //load backend css & scripts
-        add_action( 'admin_enqueue_scripts', array( $this, 'wpc_be_scripts' ) ); 
+        add_action( 'admin_enqueue_scripts', array( $this, 'wpc_be_scripts' ) );     
     }
     /**
      * wpc_language_setup()
@@ -133,6 +135,30 @@ class WPCCore {
                 wp_enqueue_style( 'wp-color-picker' );
             }
         }     
+    }
+    /**
+     * wpc_fr_icons()
+     * ----------------
+     * Adds a ton of different icons to your website
+     */
+    public function wpc_fr_icons() {
+                    $favs = [
+                        '16x16' => WPCUtilities::wpc_get_theme_option('wpc-fr-16x16'),
+                        '32x32' => WPCUtilities::wpc_get_theme_option('wpc-fr-32x32'),
+                        '96x96' => WPCUtilities::wpc_get_theme_option('wpc-fr-96x96')
+                    ];
+        if( !empty($favs['16x16']) ) :
+        ?>  
+            <link rel="icon" type="image/png" href="data:image/png;base64, <?php echo WPCUtilities::wpc_encodeimage_b64( $favs['16x16'] ); ?>" sizes="16x16">
+        <?php endif; 
+        if( !empty($favs['32x32']) ) :
+        ?>
+            <link rel="icon" type="image/png" href="data:image/png;base64, <?php echo WPCUtilities::wpc_encodeimage_b64( $favs['32x32'] ); ?>" sizes="32x32">
+        <?php endif; 
+        if( !empty($favs['96x96']) ) :
+        ?>        
+            <link rel="icon" type="image/png" href="data:image/png;base64, <?php echo WPCUtilities::wpc_encodeimage_b64( $favs['96x96'] ); ?>" sizes="96x96">        
+        <?php endif;   
     }
     
 }

@@ -17,4 +17,14 @@ jQuery(document).ready(function($){
     $( ".wpc-input-limited" ).keyup(function() {
         $( this ).closest('td').find( ".wpc-counter-num" ).text( $( this ).attr( "maxlength" ) - $( this ).val().length  );
     });
+    //switch tab menu
+    $( '.wpc-tab-btn' ).click(function() {
+        if( !$( this ).hasClass('active') ) {
+            $( '.wpc-tab-btn' ).removeClass('active');
+            $( this ).addClass('active');
+
+            $( '.wpc-settings' ).removeClass('active');      
+            $( $( this ).attr( 'data-target' ) ).addClass('active');
+        }  
+    });
 });

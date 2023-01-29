@@ -70,7 +70,35 @@ class WPCUtilities {
                 $options['wpc-fr-image'] = sanitize_text_field($options['wpc-fr-image']);
             } else {
                 unset($options['wpc-fr-image']); // Remove from options if empty or invalid
-            }        
+            }     
+            
+            // Favicon 16x16
+            if (!empty($options['wpc-fr-16x16'])) {   
+                $options['wpc-fr-16x16'] = sanitize_text_field($options['wpc-fr-16x16']);
+            } else {
+                unset($options['wpc-fr-16x16']); // Remove from options if empty or invalid
+            }   
+            
+            // Favicon 32x32
+            if (!empty($options['wpc-fr-32x32'])) {   
+                $options['wpc-fr-32x32'] = sanitize_text_field($options['wpc-fr-32x32']);
+            } else {
+                unset($options['wpc-fr-32x32']); // Remove from options if empty or invalid
+            }    
+            
+            // Favicon 96x96
+            if (!empty($options['wpc-fr-96x96'])) {   
+                $options['wpc-fr-96x96'] = sanitize_text_field($options['wpc-fr-96x96']);
+            } else {
+                unset($options['wpc-fr-96x96']); // Remove from options if empty or invalid
+            }   
+            
+            // Menu structure hidden field
+            if (!empty($options['wpc-menu-structure'])) {   
+                $options['wpc-menu-structure'] = sanitize_text_field($options['wpc-menu-structure']);
+            } else {
+                unset($options['wpc-menu-structure']); // Remove from options if empty or invalid
+            }             
 
             // Headline Font URL
             if (!empty($options['wpc-fr-hdl-font'])) {   
@@ -242,6 +270,24 @@ class WPCUtilities {
                 }    
             } 
             return $display_image;
+    }
+    /**
+     * wpc_encodeimage_b64( $link )
+     * -----------------------------
+     * 
+     * encodes a linked image base64 to be directly embedded
+     * 
+     * @param string $link to image to encode
+     * @return string $data base64 encoded data
+     */
+    public static function wpc_encodeimage_b64( $link ) {
+        
+        $img = file_get_contents( $link );
+        $data = base64_encode($img);
+
+        // return output
+        return $data;  
+        
     }
     
 }
