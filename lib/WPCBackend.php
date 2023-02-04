@@ -14,6 +14,8 @@ class WPCBackend {
     private $dir;
     //constructor
     public function __construct() {
+        //reuqire libs
+        require_once 'WPCMStructure.php';
         //get uris
         $this->dir = WPCUtilities::wpc_dirs();
         //add backend panes for admins
@@ -263,13 +265,13 @@ class WPCBackend {
                                 <?php 
                                     // Menu structure
                                     $menu = WPCUtilities::wpc_get_theme_option('wpc-menu-structure'); 
-                                    if ( empty($menu) ) {
-                                        echo '<p><i>' . esc_html__('No menu structure found. To start creating a menu structure for your content useable via API access click the button below.', 'tsu-wpconnect-theme') . '</i></p><br />';
-                                        echo '<button type="button" class="button wpc-create-menu" id="wpc_lvl_1_menu">' . esc_html__('Create menu structure', 'tsu-wpconnect-theme') . '</button>';
-                                    } else {
-                                        echo '<button type="button" class="button wpc-create-menu" id="wpc_lvl_1_menu">' . esc_html__('Add menu structure', 'tsu-wpconnect-theme') . '</button>';
-                                    }
-                                ?>
+                                    if ( empty($menu) ) : ?>
+                                        <p class="wpc-no-menu">
+                                            <i><?php esc_html_e('No menu structure found. To start creating a menu structure for your content useable via API access click the button below.', 'tsu-wpconnect-theme'); ?></i>
+                                        </p>
+                                    <?php endif; ?>
+                                    <div id="wpc_menu_structure_container"></div>                           
+                                    <button type="button" class="thickbox button wpc-create-menu wpc_lvl_1_menu"><?php esc_html_e('Add menu structure', 'tsu-wpconnect-theme'); ?></button>
                                 <input type="hidden" class="wpc-hidden-input" name="wpc_options[wpc-menu-structure]" id="wpc-menu-structure" value="<?php echo esc_attr($menu); ?>">                                  
                             </div>                            
                             <div class="wpc-settings" id="wpc_settings_api">
@@ -280,6 +282,18 @@ class WPCBackend {
 
                 </form>            
         </div><!-- .wrap -->
+
+        <div id="wpc_menu_modal" class="wpc-modal" style="display: none">
+            <div class="wpc-modal-window">   
+                <?php 
+                    $modalContent = new WPCMStructure();
+
+                    $modalContent->wpc_modal_form( 1 );
+
+                ?>    
+            </div>
+        </div>
+        
         <?php        
     }    
 }

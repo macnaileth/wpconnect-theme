@@ -30,7 +30,8 @@ None ATM
 
 == upcoming ==
 
-Menu structure creation implementation
+- Menu structure creation implementation
+- additional css for Gutenberg
 
 = 0.0.1 =
 
