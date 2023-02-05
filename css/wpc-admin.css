@@ -126,6 +126,27 @@ Stylesheet for the admin pages
     border-bottom-left-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;    
 }
+/* menu structure */
+#wpc_menu_structure_container {
+    display: flex;
+    gap: 0.75rem;
+}
+.wpc-toplvl-menu {
+    min-height: 150px;
+    border: 1px solid gray;
+    margin: 0.5rem 0;
+    border-radius: 0.25rem;
+    width: 10%;    
+    min-width: 150px;
+}
+.wpc-menu-label {
+    background-color: #8c8f94;
+    color: white;
+    font-weight: bold;
+    padding: 0.25rem;
+    display: flex;
+    justify-content: space-between;    
+}
 /* breakpoints */
 @media (min-width: 576px) { 
     .wpc-modal-window {
