@@ -1,6 +1,6 @@
 === tsunami wp connect theme ===
 Contributors: Marco Nagel
-Version: 0.0.6
+Version: 0.0.7
 Requires at least: 6.1.1
 Tested up to: 6.1.1
 Requires PHP: 8.0

@@ -101,7 +101,7 @@ Stylesheet for the admin pages
     padding: 0px;
     margin: 0px;
 }
-.wpc-modal-head .wpc-close {
+.wpc-modal-head .wpc-close, .wpc-remove {
     cursor: pointer;
 }
 .wpc-modal-body {
@@ -129,15 +129,21 @@ Stylesheet for the admin pages
 /* menu structure */
 #wpc_menu_structure_container {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
+    margin: 1rem 0;
 }
 .wpc-toplvl-menu {
     min-height: 150px;
     border: 1px solid gray;
-    margin: 0.5rem 0;
     border-radius: 0.25rem;
-    width: 10%;    
+    width: 100%;    
     min-width: 150px;
+}
+.wpc-toplvl-menu:hover {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);      
 }
 .wpc-menu-label {
     background-color: #8c8f94;
@@ -147,13 +153,22 @@ Stylesheet for the admin pages
     display: flex;
     justify-content: space-between;    
 }
+.wpc-menu-body {
+    padding: 0.25rem;
+}
 /* breakpoints */
 @media (min-width: 576px) { 
     .wpc-modal-window {
         width: 80%; 
     }    
+    .wpc-toplvl-menu {
+        width: 48%;
+    }    
 }
 @media (min-width: 783px) { 
+    .wpc-toplvl-menu {
+        width: 32%;
+    }
     .wpc-word-counter {
         display: inline;
         background-color: #fff;    
@@ -184,6 +199,9 @@ Stylesheet for the admin pages
 @media (min-width: 960px) { 
     .wpc-modal-window {
         width: 50%; 
-    }        
+    }  
+    .wpc-toplvl-menu {
+        width: 24%;
+    }    
 }
 

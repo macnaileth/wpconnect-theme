@@ -58,13 +58,13 @@ jQuery(document).ready(function($){
         }  
     });
     //submission
-    $( '.wpc-submit-menu' ).on( "click", function(e) {
+    $( '.wpc-submit-menu' ).on( "click", function() {
    
         //level 1 menu
         if( $('.wpc-submit-menu').is('#wpc_submit_menu_lvl1') ) {     
             structureString = menuStructure.addMenu( $( '#wpc_input_menu_lvl1' ).val() );
 
-            console.log('I am level 1 submit', JSON.parse(structureString));
+            console.log( '*** WPC: Menu added to structure ***' );
         }
         //at the end, always hide modal and update structure string
         $( '#wpc_menu_modal' ).hide();
@@ -77,6 +77,18 @@ jQuery(document).ready(function($){
         $( '#wpc_input_menu_lvl1' ).val('');
         
     } );
+    //removal - toplevel
+    $( document ).on( "click", '.wpc-toplvl-menu .wpc-remove', function() {
+        //get node to remove
+        let node = $( this ).parent().parent().attr('id');
+
+        //remove from input string
+        structureString = menuStructure.removeMenu( node );
+        //update input field
+        $( '#wpc-menu-structure' ).val( structureString );
+        //visually remove menu from ui
+        $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );
+    });
 });
 
 class wpcStructure {
@@ -93,23 +105,46 @@ class wpcStructure {
         if ( counter === 0 ){
             this.innerStruct['menu-' + 0] = menuName === '' ? {} : { name: menuName };
         } else {
-            this.innerStruct['menu-' + ( counter )] = menuName === '' ? {} : { name: menuName };
+            for (let i = 0; i <= counter; i++) {
+                //insert prop if needed, otherwise append
+                if(!this.innerStruct.hasOwnProperty('menu-' + ( i ))){
+                    this.innerStruct['menu-' + ( i )] = menuName === '' ? {} : { name: menuName };
+                    break;
+                }
+            }
         }
         return JSON.stringify( this.innerStruct );   
+    }
+    
+    removeMenu = ( menuName ) => {  
+        delete this.innerStruct[ menuName ];
+        return JSON.stringify( this.innerStruct ); 
     }
     
     renderStructure = () => {
         //display the structure on screen
         let htmlStr = '';
         
-        Object.keys( this.innerStruct ).forEach( (key, index) => {
+        //order before output
+        const orderedOutput = Object.keys( this.innerStruct ).sort().reduce(
+            (obj, key) => { 
+                obj[key] = this.innerStruct[key]; 
+                return obj;
+                }, 
+                {}
+            );
+        
+        Object.keys( orderedOutput ).forEach( (key, index) => {
             
-            let name = this.innerStruct[key].name === undefined || this.innerStruct[key].name === '' ? key : this.innerStruct[key].name + ' (' + key + ')';
+            let name = orderedOutput[key].name === undefined || orderedOutput[key].name === '' ? key : orderedOutput[key].name + ' (' + key + ')';
             
             htmlStr += `<div class="wpc-toplvl-menu" id="${ key }">
                             <div class="wpc-menu-label">
                                 <span class="wpc_menu-name">${ name }</span>
                                 <span class="wpc-remove">&times;</span>
+                            </div>
+                            <div class="wpc-menu-body">
+                                <a class="wpc-menu-item-add">+</a>
                             </div>
                         </div>
                         `;
