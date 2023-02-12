@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-02-04 11:54+0100\n"
+"POT-Creation-Date: 2023-02-12 15:58+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -228,15 +228,15 @@ msgstr ""
 "sehr falsch konfiguriert. Es wurde kein Landingpage-Typ definiert. Wenden "
 "Sie sich an den Site-Administrator:"
 
-#: lib/WPCMStructure.php:25
+#: lib/WPCMStructure.php:26
 msgid "Setup a base menu"
 msgstr "Einrichten eines Basismenüs"
 
-#: lib/WPCMStructure.php:33
+#: lib/WPCMStructure.php:34
 msgid "Name for menu"
 msgstr "Name für Menü"
 
-#: lib/WPCMStructure.php:37
+#: lib/WPCMStructure.php:38
 msgid ""
 "Here you can setup your base level menu structures for being outputted via "
 "the api. You can fill this structure with different menu items."
@@ -244,13 +244,67 @@ msgstr ""
 "Hier können Sie Ihre Basismenüstrukturen für die Ausgabe über die API "
 "einrichten. Sie können diese Struktur mit verschiedenen Menüpunkten füllen."
 
-#: lib/WPCMStructure.php:40
+#: lib/WPCMStructure.php:41 lib/WPCMStructure.php:94
 msgid "Create & close"
 msgstr "Erstellen & Schließen"
 
-#: lib/WPCMStructure.php:41
+#: lib/WPCMStructure.php:42 lib/WPCMStructure.php:95
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: lib/WPCMStructure.php:53
+msgid "Add item to menu"
+msgstr "Element zum Menü hinzufügen"
+
+#: lib/WPCMStructure.php:61
+msgid "Name for item"
+msgstr "Name des Elements"
+
+#: lib/WPCMStructure.php:66
+msgid "Item type"
+msgstr "Element-Typ"
+
+#: lib/WPCMStructure.php:68
+msgid "Page"
+msgstr "Seite"
+
+#: lib/WPCMStructure.php:69
+msgid "Post"
+msgstr "Beitrag"
+
+#: lib/WPCMStructure.php:70
+msgid "Category"
+msgstr "Kategorie"
+
+#: lib/WPCMStructure.php:71
+msgid "Tag"
+msgstr "Schlagwort"
+
+#: lib/WPCMStructure.php:72
+msgid "Custom link"
+msgstr "Benutzerdefinierter Link"
+
+#: lib/WPCMStructure.php:74
+msgid "Pick a page"
+msgstr "Seite auswählen"
+
+#: lib/WPCMStructure.php:78
+msgid "Pick a post"
+msgstr "Beitrag auswählen"
+
+#: lib/WPCMStructure.php:82
+msgid "Pick a category"
+msgstr "Kategorie auswählen"
+
+#: lib/WPCMStructure.php:86
+msgid "Pick a tag"
+msgstr "Schlagwort auswählen"
+
+#: lib/WPCMStructure.php:91
+msgid "Add items to menu. These can be pages, blog posts or custom links"
+msgstr ""
+"Fügen Sie Elemente zum Menü hinzu. Dies können Seiten, Blogbeiträge oder "
+"benutzerdefinierte Links sein."
 
 #: lib/WPCUtilities.php:214
 msgid "Remaining chars"

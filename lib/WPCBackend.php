@@ -289,6 +289,8 @@ class WPCBackend {
                     $modalContent = new WPCMStructure();
 
                     $modalContent->wpc_modal_form( 1 );
+                    
+                    $modalContent->wpc_modal_form( 2 );
 
                 ?>    
             </div>

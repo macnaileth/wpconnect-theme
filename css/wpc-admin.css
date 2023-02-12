@@ -7,6 +7,10 @@ Stylesheet for the admin pages
     Created on : 15.01.2023, 15:50:54
     Author     : marconagel
 */
+.wpc-row {
+    display: flex;
+    gap: 0.5rem;
+}
 .wpc-word-counter {
     text-align: right;
     display: block;
@@ -139,6 +143,8 @@ Stylesheet for the admin pages
     border-radius: 0.25rem;
     width: 100%;    
     min-width: 150px;
+    display: flex;
+    flex-direction: column;   
 }
 .wpc-toplvl-menu:hover {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
@@ -155,6 +161,15 @@ Stylesheet for the admin pages
 }
 .wpc-menu-body {
     padding: 0.25rem;
+    margin-top: auto;
+    text-align: center;    
+}
+.wpc-item-add {
+    border-top: 1px solid #8c8f94;
+    padding-top: 0.5rem;    
+}
+.wpc-menu-item-add:hover {
+    opacity: 0.75;
 }
 /* breakpoints */
 @media (min-width: 576px) { 

@@ -6,6 +6,7 @@
     Created on : 16.01.2023, 10:48:00
     Author     : marconagel
 */
+
 jQuery(document).ready(function($){
     
     //load up needed var for menu creation
@@ -43,12 +44,14 @@ jQuery(document).ready(function($){
         }  
     });
     //menu structure stuff
-    $( '.wpc-create-menu' ).on( "click", function() {
+    $( '.wpc-create-menu' ).on( "click", function(e) {
+        e.preventDefault();
         //create modal object
         if ( $( '#wpc_menu_modal' ).is(':visible') ) {
-            $( '#wpc_menu_modal' ).hide(); 
+            $( '#wpc_menu_modal, #wpc_modal_lvl1' ).hide(); 
         } else {
-            $( '#wpc_menu_modal' ).show(); 
+            $( '#wpc_menu_modal, #wpc_modal_lvl1' ).show(); 
+            $( '#wpc_modal_lvl2' ).hide(); 
         }
     } );
     //close
@@ -88,6 +91,16 @@ jQuery(document).ready(function($){
         $( '#wpc-menu-structure' ).val( structureString );
         //visually remove menu from ui
         $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );
+    });
+    //appending items: Display the modal
+    $( document ).on( "click", '.wpc-toplvl-menu .wpc-menu-item-add', function(e) {
+        e.preventDefault();
+        if ( $( '#wpc_menu_modal' ).is(':visible') ) {
+            $( '#wpc_menu_modal, #wpc_modal_lvl2' ).hide(); 
+        } else {
+            $( '#wpc_menu_modal, #wpc_modal_lvl2' ).show(); 
+            $( '#wpc_modal_lvl1' ).hide(); 
+        }        
     });
 });
 
@@ -144,13 +157,26 @@ class wpcStructure {
                                 <span class="wpc-remove">&times;</span>
                             </div>
                             <div class="wpc-menu-body">
-                                <a class="wpc-menu-item-add">+</a>
+                                <div class="wpc-item-add">
+                                    <a href="#" class="wpc-menu-item-add">${ this.renderSVG() }</a>
+                                </div>
                             </div>
                         </div>
                         `;
         });
         
         return htmlStr;
+    }
+    
+    renderSVG = ( type = 'PLUS', prefs = { fill: '#8c8f94', stroke: '#8c8f94', strokeWidth: '1' } ) => { 
+        if (type === 'PLUS'){
+            return `
+                <svg height="30" width="30">
+                 <polygon points="0,12 12,12 12,0 17,0 17,12 30,12 30,17 17,17 17,30 12,30 12,17 0,17" style="fill:${ prefs.fill };stroke:${ prefs.stroke };stroke-width:${ prefs.strokeWidth }" />.
+                </svg>           
+            `;
+        }
+        return false;
     }
     
 };

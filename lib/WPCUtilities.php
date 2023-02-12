@@ -289,5 +289,60 @@ class WPCUtilities {
         return $data;  
         
     }
+    /**
+     * wpc_ddoptions( $type = 'PAGES' )
+     * ---------------------------------
+     * 
+     * returns specificly wordpress pages or posts as dropdown options with id as value
+     * based on the example in codex: https://developer.wordpress.org/reference/functions/get_pages/
+     * 
+     * @param string $type Can be set to PAGES | POSTS | CATEGORIES - Default is PAGES
+     * @return string returns either a html options string for use in a <select>-element or empty if nothing was retrieved
+     * 
+     */
+    public static function wpc_ddoptions( $type = 'PAGES' ) {
+        
+        $options = '';
+        
+        if ( $type == 'PAGES' ){
+            $pages = get_pages(); 
+
+            foreach ( $pages as $page ) {
+                  $option = '<option value="' . $page->ID . '">';
+                  $option .= esc_html( $page->post_title );
+                  $option .= '</option>';
+                  $options .= $option;
+            } 
+        }else if ( $type == 'POSTS' ){
+            $posts = get_posts(); 
+
+            foreach ( $posts as $post ) {
+                  $option = '<option value="' . $post->ID . '">';
+                  $option .= esc_html( $post->post_title );
+                  $option .= '</option>';
+                  $options .= $option;
+            } 
+        }else if ( $type == 'CATEGORIES' ) {
+            $cats = get_categories( [ 'orderby' => 'name', 'order' => 'ASC', 'hide_empty' => false ] ); 
+
+            foreach ( $cats as $cat ) {
+                  $option = '<option value="' . $cat->term_id . '">';
+                  $option .= esc_html( $cat->name );
+                  $option .= '</option>';
+                  $options .= $option;
+            }             
+        }else if ( $type == 'TAGS' ) {
+            $tags = get_tags( [ 'orderby' => 'name', 'order' => 'ASC', 'hide_empty' => false ] ); 
+
+            foreach ( $tags as $tag ) {
+                  $option = '<option value="' . $tag->term_id . '">';
+                  $option .= esc_html( $tag->name );
+                  $option .= '</option>';
+                  $options .= $option;
+            }             
+        }
+        
+        return $options;
+    }
     
 }
