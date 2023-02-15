@@ -1,6 +1,6 @@
 === tsunami wp connect theme ===
 Contributors: Marco Nagel
-Version: 0.0.7
+Version: 0.0.8
 Requires at least: 6.1.1
 Tested up to: 6.1.1
 Requires PHP: 8.0
@@ -27,6 +27,7 @@ None ATM
 16.01.2023 - Added some Settings for redirect landing page. Easy things first ;-)
 27.01.2023 - Finished most of the settings for redirection and landing
 29.01.2023 - Finished missing settings for frontend. added setting tabs for menu structure and api settings
+12.02.2023 - basic menus could be created and deleted, started ui for menu item addition
 
 == upcoming ==
 

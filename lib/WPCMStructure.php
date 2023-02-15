@@ -73,30 +73,35 @@ class WPCMStructure {
                                     <option value="4"><?php esc_html_e('Custom link', 'tsu-wpconnect-theme'); ?></option>
                                 </select>
                             </div>
-                            <div class="wpc-col">
+                            <div class="wpc-col" id="wpc_select_page">
                                 <label for="wpc_page_id"><?php esc_html_e('Pick a page', 'tsu-wpconnect-theme'); ?></label>
                                 <select id="wpc_page_id" name="wpc_page_id">
                                     <?php echo WPCUtilities::wpc_ddoptions(); ?>
                                 </select>   
                             </div>
-                            <div class="wpc-col">
+                            <div class="wpc-col" id="wpc_select_post" style="display: none;">
                                 <label for="wpc_post_id"><?php esc_html_e('Pick a post', 'tsu-wpconnect-theme'); ?></label>
                                 <select id="wpc_post_id" name="wpc_post_id">
                                     <?php echo WPCUtilities::wpc_ddoptions('POSTS'); ?>
                                 </select>   
                             </div>
-                            <div class="wpc-col">
+                            <div class="wpc-col" id="wpc_select_cat" style="display: none;">
                                 <label for="wpc_cat_id"><?php esc_html_e('Pick a category', 'tsu-wpconnect-theme'); ?></label>
                                 <select id="wpc_cat_id" name="wpc_cat_id">
                                     <?php echo WPCUtilities::wpc_ddoptions('CATEGORIES'); ?>
                                 </select>    
                             </div>
-                            <div class="wpc-col">
+                            <div class="wpc-col" id="wpc_select_tag" style="display: none;">
                                 <label for="wpc_tag_id"><?php esc_html_e('Pick a tag', 'tsu-wpconnect-theme'); ?></label>
                                 <select id="wpc_tag_id" name="wpc_tag_id">
                                     <?php echo WPCUtilities::wpc_ddoptions('TAGS'); ?>
                                 </select>      
                             </div>
+                            <div class="wpc-col" id="wpc_input_link" style="display: none;">
+                                <label for="wpc_clink_id"><?php esc_html_e('Enter a link', 'tsu-wpconnect-theme'); ?></label>
+                                <input type="text" class="wpc-input-limited" maxlength="150" name="wpc_clink_id" id="wpc_clink_id" value=""> 
+                                <?php WPCUtilities::wpc_charcounter(); ?>     
+                            </div>                            
                         </div>                        
                         <p><?php esc_html_e( 'Add items to menu. These can be pages, blog posts or custom links', 'tsu-wpconnect-theme' ); ?></p>
                     </div>

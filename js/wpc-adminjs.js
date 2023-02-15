@@ -13,7 +13,9 @@ jQuery(document).ready(function($){
     var structureString = $( '#wpc-menu-structure' ).val();    
     
     //create new handler object
-    const menuStructure = new wpcStructure( structureString );  
+    const menuStructure = new wpcStructure( structureString );
+    //storage for selected menu
+    var actualMenu = '';
     
     //render the stuff - if not empty
     if ( structureString !== '' ) {
@@ -62,12 +64,18 @@ jQuery(document).ready(function($){
     });
     //submission
     $( '.wpc-submit-menu' ).on( "click", function() {
-   
+        //get id
+        let submitID = $( this ).attr('id');
+        
         //level 1 menu
-        if( $('.wpc-submit-menu').is('#wpc_submit_menu_lvl1') ) {     
+        if( submitID === 'wpc_submit_menu_lvl1' ) {     
             structureString = menuStructure.addMenu( $( '#wpc_input_menu_lvl1' ).val() );
-
             console.log( '*** WPC: Menu added to structure ***' );
+        }
+        //level 2 menu item
+        if( submitID === 'wpc_submit_menu_lvl2' ) {     
+            
+            console.log( '*** WPC: Menu item appended to ' + actualMenu + ' ***' );
         }
         //at the end, always hide modal and update structure string
         $( '#wpc_menu_modal' ).hide();
@@ -94,13 +102,37 @@ jQuery(document).ready(function($){
     });
     //appending items: Display the modal
     $( document ).on( "click", '.wpc-toplvl-menu .wpc-menu-item-add', function(e) {
+        
         e.preventDefault();
+        
+        actualMenu = $( this ).parent().parent().parent().attr('id');
+        
         if ( $( '#wpc_menu_modal' ).is(':visible') ) {
             $( '#wpc_menu_modal, #wpc_modal_lvl2' ).hide(); 
         } else {
             $( '#wpc_menu_modal, #wpc_modal_lvl2' ).show(); 
             $( '#wpc_modal_lvl1' ).hide(); 
         }        
+    });
+    //selecting menu item type in modal
+    $( document ).on( "change", '#wpc_item_type', function() {
+        let itemType = this.value;
+        if( itemType === '0' ) {
+            $( '#wpc_select_page' ).show();
+            $( '#wpc_select_post, #wpc_select_cat, #wpc_select_tag, #wpc_input_link' ).hide();
+        } else if ( itemType === '1' ) {
+            $( '#wpc_select_post' ).show();
+            $( '#wpc_select_cat, #wpc_select_tag, #wpc_input_link, #wpc_select_page' ).hide();            
+        } else if ( itemType === '2' ) {
+            $( '#wpc_select_cat' ).show();
+            $( '#wpc_select_tag, #wpc_input_link, #wpc_select_page, #wpc_select_post' ).hide();            
+        } else if ( itemType === '3' ) {
+            $( '#wpc_select_tag' ).show();
+            $( '#wpc_input_link, #wpc_select_page, #wpc_select_post, #wpc_select_cat' ).hide();            
+        } else if ( itemType === '4' ) {
+            $( '#wpc_input_link' ).show();
+            $( '#wpc_select_page, #wpc_select_post, #wpc_select_cat, #wpc_select_tag' ).hide();            
+        }
     });
 });
 
