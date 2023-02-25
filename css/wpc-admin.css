@@ -106,7 +106,7 @@ Stylesheet for the admin pages
     padding: 0px;
     margin: 0px;
 }
-.wpc-modal-head .wpc-close, .wpc-remove {
+.wpc-modal-head .wpc-close, .wpc-remove, .wpc-item-down, .wpc-item-up {
     cursor: pointer;
 }
 .wpc-modal-body {
@@ -161,7 +161,10 @@ Stylesheet for the admin pages
     justify-content: space-between;    
 }
 .wpc-menu-body {
-    padding: 0.25rem;
+    padding: 0.25rem;    
+}
+.wpc-menu-bottom {
+    padding: 0.0rem 0.25rem 0.25rem 0.25rem;
     margin-top: auto;
     text-align: center;    
 }
@@ -169,8 +172,84 @@ Stylesheet for the admin pages
     border-top: 1px solid #8c8f94;
     padding-top: 0.5rem;    
 }
-.wpc-menu-item-add:hover {
+.wpc-menu-item-add:hover, .wpc-item-down:hover, .wpc-item-up:hover {
     opacity: 0.75;
+}
+.wpc-item:hover {
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+}
+.wpc-item-type {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.25rem;    
+    display: flex;
+    justify-content: space-between;
+}
+.wpc-item-page, .wpc-item-category, .wpc-item-post {
+    color: #fff;
+}
+.wpc-item-page {
+    border-color: #3821FF;
+    background-color: #3821FF;
+}
+.wpc-item-page .wpc-item-id {
+    color: #3821FF;    
+}
+.wpc-item-category {
+    border-color: #FF7003;
+    background-color: #FF7003;   
+}
+.wpc-item-category .wpc-item-id {
+    color: #FF7003;    
+}
+.wpc-item-post {
+    border-color: #FF0F6B;
+    background-color: #FF0F6B;    
+}
+.wpc-item-post .wpc-item-id {
+    color: #FF0F6B;    
+}
+.wpc-item-tag {
+    border-color: #FFDD0F;
+    background-color: #FFDD0F;    
+}
+.wpc-item-tag .wpc-item-id {
+    color: #FFDD0F;    
+}
+.wpc-item-link {
+    border-color: #21FF2F;
+    background-color: #21FF2F;      
+}
+.wpc-item {
+    display: grid;
+    justify-content: space-between;
+    padding: 0.25rem;
+    border-top: 1px solid #8c8f94;    
+    grid-template-columns: 70% 25% auto;
+}
+.wpc-item-id {
+    background-color: #fff;
+    color: #3821FF;
+    padding: 0rem 0.25rem;
+    border-radius: 0.5rem;    
+}
+
+.wpc-item span {
+    align-self: center;
+}
+.wpc-items .wpc-item:first-child {
+    border-top: none !important; 
+}
+.wpc-items .wpc-item:last-child {
+    padding-bottom: 0 !important;
+}
+.wpc-item-name {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  margin: 0 0.25rem;
 }
 /* breakpoints */
 @media (min-width: 576px) { 
