@@ -106,7 +106,7 @@ Stylesheet for the admin pages
     padding: 0px;
     margin: 0px;
 }
-.wpc-modal-head .wpc-close, .wpc-remove, .wpc-item-down, .wpc-item-up {
+.wpc-modal-head .wpc-close, .wpc-remove, .wpc-item-down, .wpc-item-up, .wpc-menu-edit {
     cursor: pointer;
 }
 .wpc-modal-body {
@@ -160,11 +160,8 @@ Stylesheet for the admin pages
     display: flex;
     justify-content: space-between;    
 }
-.wpc-menu-body {
-    padding: 0.25rem;    
-}
 .wpc-menu-bottom {
-    padding: 0.0rem 0.25rem 0.25rem 0.25rem;
+    padding-bottom: 0.25rem;
     margin-top: auto;
     text-align: center;    
 }
@@ -172,7 +169,7 @@ Stylesheet for the admin pages
     border-top: 1px solid #8c8f94;
     padding-top: 0.5rem;    
 }
-.wpc-menu-item-add:hover, .wpc-item-down:hover, .wpc-item-up:hover {
+.wpc-menu-item-add:hover, .wpc-item-down:hover, .wpc-item-up:hover, .wpc-menu-edit:hover {
     opacity: 0.75;
 }
 .wpc-item:hover {
@@ -233,7 +230,7 @@ Stylesheet for the admin pages
     background-color: #fff;
     color: #3821FF;
     padding: 0rem 0.25rem;
-    border-radius: 0.5rem;    
+    border-radius: 0.25rem;    
 }
 
 .wpc-item span {
@@ -241,9 +238,6 @@ Stylesheet for the admin pages
 }
 .wpc-items .wpc-item:first-child {
     border-top: none !important; 
-}
-.wpc-items .wpc-item:last-child {
-    padding-bottom: 0 !important;
 }
 .wpc-item-name {
   white-space: nowrap; 

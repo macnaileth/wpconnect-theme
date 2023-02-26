@@ -163,6 +163,34 @@ jQuery(document).ready(function($){
             $( '#wpc_select_page, #wpc_select_post, #wpc_select_cat, #wpc_select_tag' ).hide();            
         }
     });
+    //sorting items up and down
+    $( document ).on( "click", '.wpc-item .wpc-item-up, .wpc-item .wpc-item-down', function() { 
+        
+        //get item id
+        let itemID = $( this ).parent().parent().attr('id');
+        let menuID = $( this ).parent().parent().parent().parent().parent().attr('id');
+        
+        //check if we should move up or down
+        if ( $( this ).hasClass('wpc-item-up') ) {
+            
+            console.log('Moving item ' + itemID + ' up, Menu: ' + menuID);
+            structureString = menuStructure.shiftItem( itemID, menuID, 'UP' );
+            
+            
+        } else if ( $( this ).hasClass('wpc-item-down') ) {
+            
+            console.log('Moving item ' + itemID + ' down, Menu: ' + menuID);
+            structureString = menuStructure.shiftItem( itemID, menuID, 'DOWN' );
+            
+        } else {
+            //something went wrong
+            console.log( '*** WPC ERROR: Menu item ' + itemID + ' could not be moved in menu ' + menuID + '! ***' );
+        }
+        //update input field
+        $( '#wpc-menu-structure' ).val( structureString );
+        //rerender
+        $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );        
+    });
 });
 
 class wpcStructure {
@@ -196,7 +224,21 @@ class wpcStructure {
     }
     
     removeItem = ( menuName, itemName ) => {  
+        
+        //get item position and reorder after deletion
+        let itemPos = this.innerStruct[ menuName ][ itemName ].order;
+        
         delete this.innerStruct[ menuName ][ itemName ];
+        
+        //reorder
+        Object.keys( this.innerStruct[ menuName ] ).forEach( ( key ) => { 
+            if ( key !== 'name' ) { 
+                if ( this.innerStruct[ menuName ][ key ].order > itemPos ) {
+                    this.innerStruct[ menuName ][ key ].order -= 1;
+                }
+            }
+        });        
+          
         return JSON.stringify( this.innerStruct ); 
     }
     
@@ -210,15 +252,45 @@ class wpcStructure {
         });
         item.order = appendOrder;        
         //type always valid, so we have to check for id and base menu
-        if ( menuName !== '' && item.id != -1 && item.name !== '' ) {         
-            this.innerStruct[ menuName ][ 'item-' + item.type + '-' + item.id ] = item;
-            console.log( '*** WPC: Menu item ' + item.name + ' appended to ' + menuName + ' ***' );
+        if ( menuName !== '' && item.id != -1 && item.name !== '' ) {      
+            //check if item exists, if so, only change
+            if ( this.innerStruct[ menuName ].hasOwnProperty('item-' + item.type + '-' + item.id) ){
+                 this.innerStruct[ menuName ][ 'item-' + item.type + '-' + item.id ].name = item.name;
+                 console.log( '*** WPC: Menu item ' + item.name + ' changed! ***' );
+            } else {
+                this.innerStruct[ menuName ][ 'item-' + item.type + '-' + item.id ] = item;
+                console.log( '*** WPC: Menu item ' + item.name + ' appended to ' + menuName + ' ***' );
+            }
             return JSON.stringify( this.innerStruct ); 
         } else {
             console.log( '*** WPC ERROR: Menu item NOT appended to ' + menuName + ' ***' );
             return JSON.stringify( this.innerStruct );   
         }
     }
+    //shift can be UP or DOWN
+    shiftItem = ( itemName, menuName, shift = 'UP' ) => {
+        
+        //get item order property
+        let curPos = this.innerStruct[ menuName ][ itemName ].order;
+        let shiftPos = shift === 'UP' ? curPos - 1 : shift === 'DOWN' ? curPos + 1 : curPos;
+
+        let shiftMax = this.innerStruct[ menuName ].hasOwnProperty('name') ? Object.keys( this.innerStruct[ menuName ] ).length - 1 : Object.keys( this.innerStruct[ menuName ] ).length;
+        
+        //only move if not zero or smaller and smaller than max num
+        if( shiftPos >= 0 && shiftPos < shiftMax ){
+            Object.keys( this.innerStruct[ menuName ] ).forEach( ( key, index ) => { 
+                if ( key !== 'name' ) {
+                    let itemPos = this.innerStruct[ menuName ][ key ].order;
+                    if ( itemPos == shiftPos ) {
+                        this.innerStruct[ menuName ][ key ].order = curPos;
+                        this.innerStruct[ menuName ][ itemName ].order = shiftPos;
+                    }
+                }
+            });            
+        }
+        return JSON.stringify( this.innerStruct );
+    }
+    
     
     renderStructure = () => {
         //display the structure on screen
@@ -239,7 +311,7 @@ class wpcStructure {
             
             htmlStr += `<div class="wpc-toplvl-menu" id="${ key }">
                             <div class="wpc-menu-label">
-                                <span class="wpc_menu-name">${ name }</span>
+                                <span class="wpc_menu-name"><span class="wpc-menu-edit">${ this.renderSVG( 'EDIT', { fill: '#fff', stroke: '#fff', strokeWidth: '1', scale: '10' } ) }</span>${ name }</span>
                                 <span class="wpc-remove">&times;</span>
                             </div>
                             <div class="wpc-menu-body"> 
@@ -260,29 +332,24 @@ class wpcStructure {
     }
     
     renderItems = ( object ) => {
+  
+        let htmlArr = [];
         
-        let htmlStr = '';      
-        
-        Object.keys( object ).forEach( ( key ) => { 
+        Object.keys( object ).forEach( ( key ) => {   
             if ( key !== 'name' ) {
-                   
-                htmlStr += `
+                let posKey = object[key].order;
+                htmlArr[posKey] = `
                             <div class="wpc-item" id="${ key }" data-item-order="${ object[key].order }">
-                                <span class="wpc-item-name"><span class="wpc-item-up">&#x2B06;</span><span class="wpc-item-down">&#x2B07;</span> ${ object[key].name } ${ object[key].type == 4 ? '<span class="wpc-link-text">| <a target="_blank" rel="noopener noreferrer" href="//' + this.cleanLink( object[key].id ) + '">' + object[key].id + '</a></span>' : '' }</span>
+                                <span class="wpc-item-name"><span class="wpc-item-up">&#x2B06;</span><span class="wpc-item-down">&#x2B07;</span> <span class="wpc-menu-edit">${ this.renderSVG( 'EDIT', { fill: '#3c434a', stroke: '#3c434a', strokeWidth: '1', scale: '10' } ) }</span>${ object[key].name } ${ object[key].type == 4 ? '<span class="wpc-link-text">| <a target="_blank" rel="noopener noreferrer" href="//' + this.cleanLink( object[key].id ) + '">' + object[key].id + '</a></span>' : '' }</span>
                                 ${ this.renderItemIcon( object[key].type, object[key].id ) }
                                 <span class="wpc-remove">&times;</span>
                             </div>           
                         `; 
-                        
-            }
+            }    
         });
         
-        return htmlStr;
-    }
-    
-    shiftItem = () => {
-        
-    }
+        return htmlArr.join('');
+    }  
     
     cleanLink = ( url ) => {
         //remove protocol if there is
@@ -320,13 +387,28 @@ class wpcStructure {
     }
     
     
-    renderSVG = ( type = 'PLUS', prefs = { fill: '#8c8f94', stroke: '#8c8f94', strokeWidth: '1', height: '30', width: '30' } ) => { 
+    renderSVG = ( type = 'PLUS', prefs = { fill: '#8c8f94', stroke: '#8c8f94', strokeWidth: '1', scale: '30' } ) => { 
+        
+        let baseWidth = 30;
+        let scaleFactor = prefs.scale / baseWidth;
+        
         if (type === 'PLUS'){
             return `
-                <svg height="${ prefs.height }" width="${ prefs.width }">
-                 <polygon points="0,12 12,12 12,0 17,0 17,12 30,12 30,17 17,17 17,30 12,30 12,17 0,17" style="fill:${ prefs.fill };stroke:${ prefs.stroke };stroke-width:${ prefs.strokeWidth }" />.
+                <svg height="${ prefs.scale }" width="${ prefs.scale }">
+                    <g transform="scale(${ scaleFactor })">
+                        <polygon points="0,12 12,12 12,0 17,0 17,12 30,12 30,17 17,17 17,30 12,30 12,17 0,17" style="fill:${ prefs.fill };stroke:${ prefs.stroke };stroke-width:${ prefs.strokeWidth }" />
+                    </g>
                 </svg>           
             `;
+        } else if (type === 'EDIT'){
+            return `
+                <svg height="${ prefs.scale }" width="${ prefs.scale }">
+                    <g transform="scale(${ scaleFactor })">
+                        <polygon points="0,5 5,0 23,18 18,23 0,5" style="fill:${ prefs.fill };stroke:${ prefs.stroke };stroke-width:${ prefs.strokeWidth }" />
+                        <polygon points="27,22 30,30 22,27 20,25 25,20" style="fill:${ prefs.fill };stroke:${ prefs.stroke };stroke-width:${ prefs.strokeWidth }" />
+                    </g>
+                </svg>           
+            `;            
         }
         return false;
     }
