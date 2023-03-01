@@ -106,7 +106,7 @@ Stylesheet for the admin pages
     padding: 0px;
     margin: 0px;
 }
-.wpc-modal-head .wpc-close, .wpc-remove, .wpc-item-down, .wpc-item-up, .wpc-menu-edit {
+.wpc-modal-head .wpc-close, .wpc-remove, .wpc-item-down, .wpc-item-up, .wpc-menu-edit, .wpc-item-edit {
     cursor: pointer;
 }
 .wpc-modal-body {
@@ -169,7 +169,7 @@ Stylesheet for the admin pages
     border-top: 1px solid #8c8f94;
     padding-top: 0.5rem;    
 }
-.wpc-menu-item-add:hover, .wpc-item-down:hover, .wpc-item-up:hover, .wpc-menu-edit:hover {
+.wpc-menu-item-add:hover, .wpc-item-down:hover, .wpc-item-up:hover, .wpc-menu-edit:hover, .wpc-item-edit:hover {
     opacity: 0.75;
 }
 .wpc-item:hover {

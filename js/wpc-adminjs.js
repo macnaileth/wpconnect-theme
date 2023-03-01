@@ -172,14 +172,8 @@ jQuery(document).ready(function($){
         
         //check if we should move up or down
         if ( $( this ).hasClass('wpc-item-up') ) {
-            
-            console.log('Moving item ' + itemID + ' up, Menu: ' + menuID);
-            structureString = menuStructure.shiftItem( itemID, menuID, 'UP' );
-            
-            
+            structureString = menuStructure.shiftItem( itemID, menuID, 'UP' ); 
         } else if ( $( this ).hasClass('wpc-item-down') ) {
-            
-            console.log('Moving item ' + itemID + ' down, Menu: ' + menuID);
             structureString = menuStructure.shiftItem( itemID, menuID, 'DOWN' );
             
         } else {
@@ -190,6 +184,20 @@ jQuery(document).ready(function($){
         $( '#wpc-menu-structure' ).val( structureString );
         //rerender
         $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );        
+    });
+    //edit menu/item names
+    $( document ).on( "click", '.wpc-menu-edit, .wpc-item-edit', function() {
+        
+        let parentID = '';
+        
+        if ( $( this ).hasClass('wpc-menu-edit') ) {
+            parentID = $( this ).parent().parent().parent().attr('id');
+            
+        } else if ( $( this ).hasClass('wpc-item-edit') ) {
+            parentID = $( this ).parent().parent().attr('id');
+        }
+        console.log( 'Parent: ' + parentID );
+        
     });
 });
 
@@ -311,7 +319,7 @@ class wpcStructure {
             
             htmlStr += `<div class="wpc-toplvl-menu" id="${ key }">
                             <div class="wpc-menu-label">
-                                <span class="wpc_menu-name"><span class="wpc-menu-edit">${ this.renderSVG( 'EDIT', { fill: '#fff', stroke: '#fff', strokeWidth: '1', scale: '10' } ) }</span>${ name }</span>
+                                <span class="wpc_menu-name"><span class="wpc-menu-edit">${ this.renderSVG( 'EDIT', { fill: '#fff', stroke: '#fff', strokeWidth: '1', scale: '10' } ) }</span><span class="wpc-name">${ name }</span></span>
                                 <span class="wpc-remove">&times;</span>
                             </div>
                             <div class="wpc-menu-body"> 
@@ -340,7 +348,10 @@ class wpcStructure {
                 let posKey = object[key].order;
                 htmlArr[posKey] = `
                             <div class="wpc-item" id="${ key }" data-item-order="${ object[key].order }">
-                                <span class="wpc-item-name"><span class="wpc-item-up">&#x2B06;</span><span class="wpc-item-down">&#x2B07;</span> <span class="wpc-menu-edit">${ this.renderSVG( 'EDIT', { fill: '#3c434a', stroke: '#3c434a', strokeWidth: '1', scale: '10' } ) }</span>${ object[key].name } ${ object[key].type == 4 ? '<span class="wpc-link-text">| <a target="_blank" rel="noopener noreferrer" href="//' + this.cleanLink( object[key].id ) + '">' + object[key].id + '</a></span>' : '' }</span>
+                                <span class="wpc-item-name"><span class="wpc-item-up">&#x2B06;</span>
+                                <span class="wpc-item-down">&#x2B07;</span> 
+                                <span class="wpc-item-edit">${ this.renderSVG( 'EDIT', { fill: '#3c434a', stroke: '#3c434a', strokeWidth: '1', scale: '10' } ) }</span>
+                                <span class="wpc-name">${ object[key].name }</span> ${ object[key].type == 4 ? '<span class="wpc-link-text">| <a target="_blank" rel="noopener noreferrer" href="//' + this.cleanLink( object[key].id ) + '">' + object[key].id + '</a></span>' : '' }</span>
                                 ${ this.renderItemIcon( object[key].type, object[key].id ) }
                                 <span class="wpc-remove">&times;</span>
                             </div>           
