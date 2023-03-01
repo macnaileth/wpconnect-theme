@@ -262,11 +262,11 @@ class wpcStructure {
         //type always valid, so we have to check for id and base menu
         if ( menuName !== '' && item.id != -1 && item.name !== '' ) {      
             //check if item exists, if so, only change
-            if ( this.innerStruct[ menuName ].hasOwnProperty('item-' + item.type + '-' + item.id) ){
-                 this.innerStruct[ menuName ][ 'item-' + item.type + '-' + item.id ].name = item.name;
+            if ( this.innerStruct[ menuName ].hasOwnProperty('item-' + item.type + '-' + item.id + '-' + menuName) ){
+                 this.innerStruct[ menuName ][ 'item-' + item.type + '-' + item.id + '-' + menuName ].name = item.name;
                  console.log( '*** WPC: Menu item ' + item.name + ' changed! ***' );
             } else {
-                this.innerStruct[ menuName ][ 'item-' + item.type + '-' + item.id ] = item;
+                this.innerStruct[ menuName ][ 'item-' + item.type + '-' + item.id + '-' + menuName ] = item;
                 console.log( '*** WPC: Menu item ' + item.name + ' appended to ' + menuName + ' ***' );
             }
             return JSON.stringify( this.innerStruct ); 
