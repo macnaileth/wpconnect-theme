@@ -51,6 +51,10 @@ class WPCBackend {
         //load needed libs
         require_once 'WPCUtilities.php';
         ?>
+        <script>
+            //max size of JSON string
+            const maxJSONSize = <?php echo WPC_MAX_JSONSTR_LENGTH; ?>;
+        </script> 
         <div class="wrap">
             
             <h1><?php echo esc_html__( 'WPC theme settings page', 'tsu-wpconnect-theme' ); ?></h1>
@@ -269,9 +273,21 @@ class WPCBackend {
                                         <p class="wpc-no-menu">
                                             <i><?php esc_html_e('No menu structure found. To start creating a menu structure for your content useable via API access click the button below.', 'tsu-wpconnect-theme'); ?></i>
                                         </p>
-                                    <?php endif; ?>
-                                    <div id="wpc_menu_structure_container"></div>                           
-                                    <button type="button" class="thickbox button wpc-create-menu wpc_lvl_1_menu"><?php esc_html_e('Add menu structure', 'tsu-wpconnect-theme'); ?></button>
+                                    <?php endif;
+                                    if ( strlen($menu) >= WPC_MAX_JSONSTR_LENGTH ) : ?>
+                                        <div class="wpc-warning danger">
+                                            <strong><?php echo esc_html__( 'Warning', 'tsu-wpconnect-theme' ); ?>: </strong><?php echo esc_html__( 'JSON String length exceeded. No more menus or items could be added.', 'tsu-wpconnect-theme' ); ?>
+                                        </div>
+                                    <?php endif; ?> 
+                                    <div id="wpc_menuJSON_stat" style="display: none;">
+                                        <div class="wpc-headline"><?php echo esc_html__( 'Characters left:', 'tsu-wpconnect-theme' ); ?><br></div>
+                                        <div class="wpc-flex">
+                                            <div class="wpc-menubar full" style="width:50%;"></div>
+                                            <div class="wpc-menubar empty" style="width:50%;"></div>
+                                        </div>
+                                    </div>
+                                    <div id="wpc_menu_structure_container"></div>   
+                                    <button type="button" class="thickbox button wpc-create-menu wpc_lvl_1_menu"><?php esc_html_e('Add menu structure', 'tsu-wpconnect-theme'); ?></button>  
                                 <input type="hidden" class="wpc-hidden-input" name="wpc_options[wpc-menu-structure]" id="wpc-menu-structure" value="<?php echo esc_attr($menu); ?>">                                  
                             </div>                            
                             <div class="wpc-settings" id="wpc_settings_api">

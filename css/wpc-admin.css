@@ -245,6 +245,33 @@ Stylesheet for the admin pages
   text-overflow: ellipsis; 
   margin: 0 0.25rem;
 }
+#wpc_menuJSON_stat {
+    margin-top: 0.25rem;
+}
+.wpc-menubar {
+    height: 15px;
+}
+.wpc-menubar.full {
+    background-color: #135e96;
+    border-radius: 0.25rem 0rem 0rem 0.25rem;  
+    border-right: 1px solid #2271b1;    
+}
+.wpc-menubar.empty {
+    background-color: #8c8f94;
+    -webkit-box-shadow: inset 1px 1px 9px 5px rgba(0,0,0,0.45);
+    box-shadow: inset 1px 1px 9px 5px rgba(0,0,0,0.45);
+    border-radius: 0rem 0.25rem 0.25rem 0rem;  
+}
+.wpc-flex {
+    display: flex;
+}
+.wpc-warning {
+    padding: 0.25rem;
+    color: #fff;
+}
+.wpc-warning.danger {
+    background-color: #d63638;
+}
 /* breakpoints */
 @media (min-width: 576px) { 
     .wpc-modal-window {

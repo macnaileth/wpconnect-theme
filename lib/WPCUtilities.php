@@ -95,7 +95,9 @@ class WPCUtilities {
             
             // Menu structure hidden field
             if (!empty($options['wpc-menu-structure'])) {   
-                $options['wpc-menu-structure'] = sanitize_text_field($options['wpc-menu-structure']);
+                if ( $options['wpc-menu-structure'] < WPC_MAX_JSONSTR_LENGTH ) {
+                    $options['wpc-menu-structure'] = sanitize_text_field($options['wpc-menu-structure']);
+                }
             } else {
                 unset($options['wpc-menu-structure']); // Remove from options if empty or invalid
             }             

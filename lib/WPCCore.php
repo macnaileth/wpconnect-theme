@@ -6,6 +6,10 @@ namespace lib;
  * Bundles all needed lib classes in the core. 
  * @author marconagel
  */
+
+/* Maximum length of JSON string containing menus. Default: 65535 chars */
+define ('WPC_MAX_JSONSTR_LENGTH', 65535);
+
 class WPCCore {
     //private vars
     protected $themeDir;
@@ -14,6 +18,8 @@ class WPCCore {
     
     //constructor
     public function __construct() {
+        //include constants file
+        
         //require libs
         require_once 'WPCBackend.php';
         require_once 'WPCUtilities.php';

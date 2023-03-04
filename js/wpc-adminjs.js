@@ -16,14 +16,28 @@ jQuery(document).ready(function($){
     const menuStructure = new wpcStructure( structureString );
     //storage for selected menu
     var actualMenu = '';
+    //current size of JSON string
+    var curJSONSize = structureString.length;
+    var progressBar = wpcProgressBar( curJSONSize, maxJSONSize );  
     
     //render the stuff - if not empty
     if ( structureString !== '' ) {
         $( '.wpc-no-menu' ).hide();
         $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );
+        $( '#wpc_menuJSON_stat' ).show();
+        
+        //set bar
+        $( '#wpc_menuJSON_stat .wpc-menubar.full' ).css("width", progressBar.full + "%");
+        $( '#wpc_menuJSON_stat .wpc-menubar.empty' ).css("width", progressBar.empty + "%");
+        
+        //hide all site parts used to add items and menus if json string length is exceeded
+        if ( curJSONSize >= maxJSONSize ){
+            $( '.wpc-create-menu, .wpc-item-add' ).hide();   
+        }
+        
     }
     
-    console.log( '*** WPC menu structure string loaded: ' + ( structureString.length < 1 ? '- empty -' : structureString ) + ' ***' );
+    console.log( '*** WPC menu structure string loaded (' + curJSONSize + ' of ' + maxJSONSize + ' chars): ' + ( structureString.length < 1 ? '- empty -' : structureString ) + ' ***' );
     
     //initalize limited input fields
     $('.wpc-input-limited').each(function() {
@@ -64,45 +78,59 @@ jQuery(document).ready(function($){
     });
     //submission
     $( '.wpc-submit-menu' ).on( "click", function() {
-        //get id
-        let submitID = $( this ).attr('id');
         
-        //level 1 menu
-        if( submitID === 'wpc_submit_menu_lvl1' ) {     
-            structureString = menuStructure.addMenu( $( '#wpc_input_menu_lvl1' ).val() );
-            console.log( '*** WPC: Menu added to structure ***' );
-        }
-        //level 2 menu item
-        if( submitID === 'wpc_submit_menu_lvl2' ) {  
-            //TODO: Add menu item
-            let itemName = $( "#wpc_item_name" ).val();
-            let itemType = $( "#wpc_item_type" ).val();
+        //allow only if we have chars left            
+        if ( curJSONSize < maxJSONSize ) {
+
+            //get id
+            let submitID = $( this ).attr('id');
+
+            //level 1 menu
+            if( submitID === 'wpc_submit_menu_lvl1' ) {     
+                structureString = menuStructure.addMenu( $( '#wpc_input_menu_lvl1' ).val() );
+                console.log( '*** WPC: Menu added to structure ***' );
+            }
+            //level 2 menu item
+            if( submitID === 'wpc_submit_menu_lvl2' ) {  
+                //TODO: Add menu item
+                let itemName = $( "#wpc_item_name" ).val();
+                let itemType = $( "#wpc_item_type" ).val();
+
+                let itemID = -1;
+                //get correct selector value
+                if ( itemType == 0 ){
+                    itemID = $( "#wpc_page_id" ).val();
+                } else if ( itemType == 1 ){
+                    itemID = $( "#wpc_post_id" ).val();
+                } else if ( itemType == 2 ){
+                    itemID = $( "#wpc_cat_id" ).val();
+                } else if ( itemType == 3 ){
+                    itemID = $( "#wpc_tag_id" ).val();
+                } else if ( itemType == 4 ){
+                    itemID = $( "#wpc_clink_id" ).val();
+                } 
+
+                structureString = menuStructure.addItem( actualMenu, item = { 'name': itemName, 'type': itemType, 'id': itemID, 'order': 0 } );
+            }
+            //at the end, always hide modal and update structure string
+            $( '#wpc_menu_modal' ).hide();
+            $( '.wpc-no-menu' ).hide();
+            $( '#wpc-menu-structure' ).val( structureString );
+
+            //refresh structure and render anew
+            $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );
+            //reset input
+            $( '#wpc_input_menu_lvl1' ).val('');
+
+            //set bar
+            curJSONSize = structureString.length;    
+            progressBar = wpcProgressBar( curJSONSize, maxJSONSize );
+            $( '#wpc_menuJSON_stat .wpc-menubar.full' ).css("width", progressBar.full + "%");
+            $( '#wpc_menuJSON_stat .wpc-menubar.empty' ).css("width", progressBar.empty + "%");
             
-            let itemID = -1;
-            //get correct selector value
-            if ( itemType == 0 ){
-                itemID = $( "#wpc_page_id" ).val();
-            } else if ( itemType == 1 ){
-                itemID = $( "#wpc_post_id" ).val();
-            } else if ( itemType == 2 ){
-                itemID = $( "#wpc_cat_id" ).val();
-            } else if ( itemType == 3 ){
-                itemID = $( "#wpc_tag_id" ).val();
-            } else if ( itemType == 4 ){
-                itemID = $( "#wpc_clink_id" ).val();
-            } 
-            
-            structureString = menuStructure.addItem( actualMenu, item = { 'name': itemName, 'type': itemType, 'id': itemID, 'order': 0 } );
+        } else {
+            console.log( '*** WPC menu structure string maximum length exceeded (' + curJSONSize + ' of ' + maxJSONSize + ' chars). No more data can be added! ***' );
         }
-        //at the end, always hide modal and update structure string
-        $( '#wpc_menu_modal' ).hide();
-        $( '.wpc-no-menu' ).hide();
-        $( '#wpc-menu-structure' ).val( structureString );
-        
-        //refresh structure and render anew
-        $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );
-        //reset input
-        $( '#wpc_input_menu_lvl1' ).val('');
         
     } );
     //removal - toplevel
@@ -116,6 +144,18 @@ jQuery(document).ready(function($){
         $( '#wpc-menu-structure' ).val( structureString );
         //visually remove menu from ui
         $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );
+        
+        //set bar
+        curJSONSize = structureString.length;    
+        progressBar = wpcProgressBar( curJSONSize, maxJSONSize );
+        $( '#wpc_menuJSON_stat .wpc-menubar.full' ).css("width", progressBar.full + "%");
+        $( '#wpc_menuJSON_stat .wpc-menubar.empty' ).css("width", progressBar.empty + "%");
+        
+        //show add menu / item if reqs met
+        if ( curJSONSize < maxJSONSize ){
+            $( '.wpc-create-menu, .wpc-item-add' ).show();   
+        }        
+        
     });
     //removal - item
     $( document ).on( "click", '.wpc-toplvl-menu .wpc-items .wpc-remove', function() {
@@ -128,6 +168,17 @@ jQuery(document).ready(function($){
         $( '#wpc-menu-structure' ).val( structureString );
         //visually remove menu from ui
         $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );
+        
+        //set bar
+        curJSONSize = structureString.length;    
+        progressBar = wpcProgressBar( curJSONSize, maxJSONSize );
+        $( '#wpc_menuJSON_stat .wpc-menubar.full' ).css("width", progressBar.full + "%");
+        $( '#wpc_menuJSON_stat .wpc-menubar.empty' ).css("width", progressBar.empty + "%");  
+        
+        //show add menu / item if reqs met
+        if ( curJSONSize < maxJSONSize ){
+            $( '.wpc-create-menu, .wpc-item-add' ).show();   
+        }          
     });
     //appending items: Display the modal
     $( document ).on( "click", '.wpc-toplvl-menu .wpc-menu-item-add', function(e) {
@@ -200,7 +251,15 @@ jQuery(document).ready(function($){
         
     });
 });
+//separate this in production
+function wpcProgressBar ( currentValue, maxValue ) {
+    let barFull = currentValue / ( maxValue / 100 );
+    let barEmpty = 100 - barFull;  
+    
+    return { full: barFull, empty: barEmpty};   
+};
 
+//separate this in production
 class wpcStructure {
 
     constructor( structure ) {
