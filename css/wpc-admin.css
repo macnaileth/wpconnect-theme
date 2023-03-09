@@ -272,6 +272,15 @@ Stylesheet for the admin pages
 .wpc-warning.danger {
     background-color: #d63638;
 }
+.wpc-item-name .wpc-edit-name, .wpc-toplvl-menu .wpc-edit-name {
+    width: 70%;
+    min-height: 0;
+    line-height: inherit;        
+}
+.wpc-item-name .wpc-edit-name:focus, .wpc-toplvl-menu .wpc-edit-name:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;  
+}
 /* breakpoints */
 @media (min-width: 576px) { 
     .wpc-modal-window {
@@ -279,6 +288,9 @@ Stylesheet for the admin pages
     }    
     .wpc-toplvl-menu {
         width: 48%;
+    } 
+    .wpc-edit-name {
+        width: 60%
     }    
 }
 @media (min-width: 783px) { 
@@ -311,6 +323,9 @@ Stylesheet for the admin pages
     .wpc-input-limited {
         padding-right: 25px !important;
     }  
+    .wpc-edit-name {
+        width: 58%
+    }    
 }
 @media (min-width: 960px) { 
     .wpc-modal-window {
@@ -318,6 +333,6 @@ Stylesheet for the admin pages
     }  
     .wpc-toplvl-menu {
         width: 24%;
-    }    
+    } 
 }
 
