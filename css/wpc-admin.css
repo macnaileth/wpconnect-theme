@@ -224,7 +224,7 @@ Stylesheet for the admin pages
     justify-content: space-between;
     padding: 0.25rem;
     border-top: 1px solid #8c8f94;    
-    grid-template-columns: 70% 25% auto;
+    grid-template-columns: 78% 14% auto;
 }
 .wpc-item-id {
     background-color: #fff;
@@ -292,6 +292,9 @@ Stylesheet for the admin pages
     .wpc-edit-name {
         width: 60%
     }    
+    .wpc-item {  
+        grid-template-columns: 68% 25% auto;
+    }        
 }
 @media (min-width: 783px) { 
     .wpc-toplvl-menu {
@@ -325,6 +328,9 @@ Stylesheet for the admin pages
     }  
     .wpc-edit-name {
         width: 58%
+    }  
+    .wpc-item {  
+        grid-template-columns: 70% 25% auto;
     }    
 }
 @media (min-width: 960px) { 
@@ -334,5 +340,18 @@ Stylesheet for the admin pages
     .wpc-toplvl-menu {
         width: 24%;
     } 
+    .wpc-item {  
+        grid-template-columns: 70% 25% auto;
+    }    
+}
+@media (min-width: 1200px) { 
+    .wpc-item {  
+        grid-template-columns: 73% 22% auto;
+    }       
+}
+@media (min-width: 1400px) { 
+    .wpc-item {  
+        grid-template-columns: 76% 18% auto;
+    }      
 }
 

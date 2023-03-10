@@ -238,25 +238,34 @@ jQuery(document).ready(function($){
     });
     //edit menu/item names
     $( document ).on( "click", '.wpc-menu-edit, .wpc-item-edit', function() {
-        
-        let parentID = '';
-        let nameVal = $( this ).parent().children('.wpc-name').text();
-        
+       
         //hide name container and create edit box wpc-edit-name
         $('.wpc-name').show();
         $('.wpc-edit-name').hide();
         $( this ).parent().children('.wpc-name').hide();
         $( this ).parent().children('.wpc-edit-name').show().focus();
         
-        if ( $( this ).hasClass('wpc-menu-edit') ) {
-            parentID = $( this ).parent().parent().parent().attr('id');
-            
-        } else if ( $( this ).hasClass('wpc-item-edit') ) {
-            parentID = $( this ).parent().parent().attr('id');
-        }       
-        console.log( 'Parent: ' + parentID + ', Name: ' + nameVal );
-        
     });
+    //handle change name input field
+    $( document ).on( "change", '.wpc-edit-name', function() { 
+        let parentID = $( this ).attr('data-item-id');
+        let nameVal = $( this ).val(); 
+             
+        console.log( 'Parent: ' + parentID + ', Name: ' + nameVal );         
+        
+        //set name and rerender
+        structureString = menuStructure.editName( nameVal, parentID );
+        //update input field
+        $( '#wpc-menu-structure' ).val( structureString );
+        //rerender
+        $( '#wpc_menu_structure_container' ).html( menuStructure.renderStructure() );  
+                   
+    });
+    //handle focus out name input field
+    $( document ).on( "focusout", '.wpc-edit-name', function() { 
+        $( this ).hide();
+        $( this ).parent().children('.wpc-name').show();
+    });    
 });
 
 //separate this in production
@@ -365,10 +374,17 @@ class wpcStructure {
         }
         return JSON.stringify( this.innerStruct );
     }
-    
-    //TODO: Write function
+
     editName = ( name, node ) => {
+        //check if we are a menu or an item
+        if ( node.includes( 'item' ) ) {
+            let menuNode = 'menu-' + node.split( 'menu-' )[1];
+            this.innerStruct[ menuNode ][ node ].name = name;
+        } else {
+            this.innerStruct[ node ].name = name;
+        }
         
+        return JSON.stringify( this.innerStruct );
     }
     
     renderStructure = () => {
@@ -452,22 +468,22 @@ class wpcStructure {
     
     renderItemIcon = ( itemType, itemID ) => {
         
-        let itemPrefs = 'undef';
+        let itemPrefs = { text: 'undef', icon: 'dashicons dashicons-warning' };
         
         if ( itemType == 0 ){
-            itemPrefs = 'Page';
+            itemPrefs = { text: 'Page', icon: 'dashicons dashicons-text-page' };
         } else if ( itemType == 1 ){
-            itemPrefs = 'Post';
+            itemPrefs = { text: 'Post', icon: 'dashicons dashicons-admin-post' };            
         } else if ( itemType == 2 ){
-            itemPrefs = 'Category';
+            itemPrefs = { text: 'Category', icon: 'dashicons dashicons-category' };             
         } else if ( itemType == 3 ){
-            itemPrefs = 'Tag';
+            itemPrefs = { text: 'Tag', icon: 'dashicons dashicons-tag' };              
         } else if ( itemType == 4 ){
-            itemPrefs = 'Link';
+            itemPrefs = { text: 'Link', icon: 'dashicons dashicons-admin-links' };             
         }
         
-        return `<span class="wpc-item-type wpc-item-${ itemPrefs.toLowerCase() }">
-                    <span class="wpc-item-title">${ itemPrefs }</span>
+        return `<span class="wpc-item-type wpc-item-${ itemPrefs.text.toLowerCase() }">
+                    <span class="wpc-item-title ${ itemPrefs.icon }" aria-label="${ itemPrefs.text }"></span>
                     ${ itemType == 4 ? '' : '<span class="wpc-item-id">' + itemID + '</span>' }
                 </span>`;
                
