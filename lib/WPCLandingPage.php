@@ -9,6 +9,7 @@ namespace lib;
  * 
  * @author marconagel
  */
+defined( 'ABSPATH' ) or die( 'Direct access not allowed!' );
 
 class WPCLandingPage {
     //put your code here

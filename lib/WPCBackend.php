@@ -9,6 +9,8 @@ namespace lib;
  *
  * @author marconagel
  */
+defined( 'ABSPATH' ) or die( 'Direct access not allowed!' );
+
 class WPCBackend {
     //vars
     private $dir;
@@ -291,7 +293,11 @@ class WPCBackend {
                                 <input type="hidden" class="wpc-hidden-input" name="wpc_options[wpc-menu-structure]" id="wpc-menu-structure" value="<?php echo esc_attr($menu); ?>">                                  
                             </div>                            
                             <div class="wpc-settings" id="wpc_settings_api">
-                                <h1 class="wp-heading-inline"><?php echo esc_html__( 'API settings', 'tsu-wpconnect-theme' ); ?></h1>                                
+                                <h1 class="wp-heading-inline"><?php echo esc_html__( 'API settings', 'tsu-wpconnect-theme' ); ?></h1>
+                                <h2 class="title"><?php echo esc_html__( 'JSON data output', 'tsu-wpconnect-theme' ); ?></h1>
+                                <div class="wpc-api-json-display">
+                                    <?php echo '<pre>' . json_encode ( json_decode( $menu ), JSON_PRETTY_PRINT ) . '</pre>'; ?>
+                                </div>
                             </div>
                         </div>
                     <?php submit_button(); ?>

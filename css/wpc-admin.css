@@ -281,6 +281,16 @@ Stylesheet for the admin pages
     -webkit-box-shadow: none;
     box-shadow: none;  
 }
+.wpc-api-json-display {
+    border: 1px solid #3c434a;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    background-color: #000;
+    color: #fff;    
+}
+.wpc-api-json-display pre {
+    margin: 0;
+}
 /* breakpoints */
 @media (min-width: 576px) { 
     .wpc-modal-window {

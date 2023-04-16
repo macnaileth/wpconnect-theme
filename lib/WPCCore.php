@@ -6,6 +6,7 @@ namespace lib;
  * Bundles all needed lib classes in the core. 
  * @author marconagel
  */
+defined( 'ABSPATH' ) or die( 'Direct access not allowed!' );
 
 /* Maximum length of JSON string containing menus. Default: 65535 chars */
 define ('WPC_MAX_JSONSTR_LENGTH', 65535);
@@ -24,6 +25,7 @@ class WPCCore {
         require_once 'WPCBackend.php';
         require_once 'WPCUtilities.php';
         require_once 'WPCLandingPage.php';
+        require_once 'WPCAPI.php';
 
         //setup vars
         $this->themeDir = get_template_directory();
@@ -32,6 +34,8 @@ class WPCCore {
         
         //start up backend
         new \lib\WPCBackend();
+        //start api routes
+        new \lib\WPCAPI();
         
         //load textdomain
         add_action( 'after_setup_theme', array( $this, 'wpc_language_setup' ) );

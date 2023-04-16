@@ -9,6 +9,8 @@ namespace lib;
  * 
  * @author marconagel
  */
+defined( 'ABSPATH' ) or die( 'Direct access not allowed!' );
+
 class WPCUtilities {
     
     /**

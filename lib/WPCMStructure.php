@@ -8,6 +8,8 @@ namespace lib;
  *
  * @author marconagel
  */
+defined( 'ABSPATH' ) or die( 'Direct access not allowed!' );
+
 class WPCMStructure {
 
     public function __construct() {
@@ -66,11 +68,11 @@ class WPCMStructure {
                             <div class="wpc-col">
                                 <label for="wpc_item_type"><?php esc_html_e('Item type', 'tsu-wpconnect-theme'); ?></label>
                                 <select id="wpc_item_type" name="wpc_item_type">
-                                    <option value="0"><?php esc_html_e('Page', 'tsu-wpconnect-theme'); ?></option>
-                                    <option value="1"><?php esc_html_e('Post', 'tsu-wpconnect-theme'); ?></option>
-                                    <option value="2"><?php esc_html_e('Category', 'tsu-wpconnect-theme'); ?></option>
-                                    <option value="3"><?php esc_html_e('Tag', 'tsu-wpconnect-theme'); ?></option>
-                                    <option value="4"><?php esc_html_e('Custom link', 'tsu-wpconnect-theme'); ?></option>
+                                    <option value="0"><?php echo '0 - ' . esc_html__('Page', 'tsu-wpconnect-theme'); ?></option>
+                                    <option value="1"><?php echo '1 - ' . esc_html__('Post', 'tsu-wpconnect-theme'); ?></option>
+                                    <option value="2"><?php echo '2 - ' . esc_html__('Category', 'tsu-wpconnect-theme'); ?></option>
+                                    <option value="3"><?php echo '3 - ' . esc_html__('Tag', 'tsu-wpconnect-theme'); ?></option>
+                                    <option value="4"><?php echo '4 - ' . esc_html__('Custom link', 'tsu-wpconnect-theme'); ?></option>
                                 </select>
                             </div>
                             <div class="wpc-col" id="wpc_select_page">
