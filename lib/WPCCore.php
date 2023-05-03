@@ -32,6 +32,9 @@ class WPCCore {
         $this->themeURI = get_template_directory_uri();
         $this->versionNum = wp_get_theme()->get( 'Version' );
         
+        //add theme support
+        add_theme_support( 'post-thumbnails' ); //post thumbs
+        
         //start up backend
         new \lib\WPCBackend();
         //start api routes

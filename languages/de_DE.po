@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-04-16 18:31+0200\n"
+"POT-Creation-Date: 2023-05-02 21:20+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -44,17 +44,29 @@ msgstr ""
 "*** Fehler beim Laden der Landingpage: Weiterleitung/Anwendungs-URL nicht "
 "definiert! ***"
 
-#: lib/WPCAPI.php:48
+#: lib/WPCAPI.php:76
 msgid "Site structure successfully sent."
 msgstr "Site-Struktur erfolgreich gesendet."
 
-#: lib/WPCAPI.php:50
+#: lib/WPCAPI.php:80
 msgid ""
 "You can use the structured data to build your frontend, website or app on "
 "it. See below supported menu item types"
 msgstr ""
 "Sie können die strukturierten Daten verwenden, um Ihr Frontend, Ihre Website "
 "oder Ihre App darauf aufzubauen. Siehe unten unterstützte Menüelementtypen"
+
+#: lib/WPCAPI.php:98
+msgid "Content per tag successfully requested."
+msgstr "Inhalt pro Tag erfolgreich angefordert."
+
+#: lib/WPCAPI.php:102
+msgid "The requested tag does not exist. ID used: "
+msgstr "Der angeforderte Tag ist nicht vorhanden. Verwendete ID: "
+
+#: lib/WPCAPI.php:117
+msgid "Content per category successfully sent."
+msgstr "Inhalt pro Kategorie erfolgreich gesendet."
 
 #: lib/WPCBackend.php:36
 msgid "Settings"
@@ -243,6 +255,14 @@ msgstr "Menüstruktur hinzufügen"
 #: lib/WPCBackend.php:297
 msgid "JSON data output"
 msgstr "JSON-Datenausgabe"
+
+#: lib/WPCBackend.php:298
+msgid ""
+"This is the JSON output produced for the REST API displaying your menu "
+"structure. Access it via this link: "
+msgstr ""
+"Dies ist die JSON-Ausgabe, die für die REST-API erzeugt wird und Ihre "
+"Menüstruktur anzeigt. Greifen Sie über diesen Link darauf zu: "
 
 #: lib/WPCLandingPage.php:40
 msgid "Continue to"

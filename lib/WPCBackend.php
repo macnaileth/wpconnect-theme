@@ -295,6 +295,7 @@ class WPCBackend {
                             <div class="wpc-settings" id="wpc_settings_api">
                                 <h1 class="wp-heading-inline"><?php echo esc_html__( 'API settings', 'tsu-wpconnect-theme' ); ?></h1>
                                 <h2 class="title"><?php echo esc_html__( 'JSON data output', 'tsu-wpconnect-theme' ); ?></h1>
+                                <p><?php echo esc_html__( 'This is the JSON output produced for the REST API displaying your menu structure. Access it via this link: ', 'tsu-wpconnect-theme' ) . '<a target="_blank" rel="noopener noreferrer" href="' . home_url() . '/wp-json/tsu-wpconnect/v1/site/structure/">' . home_url() . '/wp-json/tsu-wpconnect/v1/site/structure/</a>'; ?> </p>
                                 <div class="wpc-api-json-display">
                                     <?php echo '<pre>' . json_encode ( json_decode( $menu ), JSON_PRETTY_PRINT ) . '</pre>'; ?>
                                 </div>
