@@ -1,6 +1,6 @@
 === tsunami wp connect theme ===
 Contributors: Marco Nagel
-Version: 0.1.0
+Version: 0.1.5
 Requires at least: 6.1.1
 Tested up to: 6.1.1
 Requires PHP: 8.0
@@ -17,6 +17,8 @@ also create a settings.json if you want to use my connect library for your app.
 Also you can setup menus, additional css, fonts etc for the Gutenberg Editor and the frontend stopper page if needed and more.
 
 REST route to access from your Frontend, site or app for menu structure: /wp-json/tsu-wpconnect/v1/site/structure/
+For category lists: https://wp.socialwerks.de/wp-json/tsu-wpconnect/v1/site/catwise/[ID]
+and tags: https://wp.socialwerks.de/wp-json/tsu-wpconnect/v1/site/tagwise/[ID]
 
 == Frequently Asked Questions ==
 
@@ -31,6 +33,7 @@ None ATM
 29.01.2023 - Finished missing settings for frontend. added setting tabs for menu structure and api settings
 12.02.2023 - basic menus could be created and deleted, started ui for menu item addition
 16.04.2023 - finished menus, added REST route to menu structure
+05.05.2023 - finished additional REST routes for categories and tags, working on JS libs now
 
 == upcoming ==
 
@@ -52,6 +55,10 @@ None ATM
 = 0.1.0 = 
 
 - Route ready and broadcasting
+
+= 0.1.5 =
+
+- Additional routes added and working
 
 == Resources & third party ==
 

@@ -98,7 +98,7 @@ class WPCAPI {
         $response[ 'status' ] = [ 'code' => 200, 'msg' => 'ok', 'notice' => esc_html__('Content per tag successfully requested.', 'tsu-wpconnect-theme') ];      
         
         $tag = get_tag( $data[ 'id' ] );
-        $response[ 'tag' ] = $tag != null ? get_tag( $data[ 'id' ] ) : [ 'notice' => esc_html__('The requested tag does not exist. ID used: ', 'tsu-wpconnect-theme') . $data[ 'id' ] ];
+        $response[ 'tag' ] = $tag != null ? $tag : [ 'notice' => esc_html__('The requested tag does not exist. ID used: ', 'tsu-wpconnect-theme') . $data[ 'id' ] ];
         
         $response[ 'posts' ] = $this->wpc_getposts_listby( $data[ 'id' ] );
         if ( empty( $response[ 'posts' ] ) ) { unset( $response[ 'posts' ] ); } 
@@ -117,7 +117,11 @@ class WPCAPI {
         
         $response['status'] = [ 'code' => 200, 'msg' => 'ok', 'notice' => esc_html__('Content per category successfully sent.', 'tsu-wpconnect-theme') ];
         
+        $cat = get_category( $data[ 'id' ] );
+        $response[ 'category' ] = $cat != null ? $cat : [ 'notice' => esc_html__('The requested category does not exist. ID used: ', 'tsu-wpconnect-theme') . $data[ 'id' ] ]; 
+        
         //TODO: Add code
+        $response[ 'posts' ] = $this->wpc_getposts_listby( $data[ 'id' ], 'category' );
         
         return $response;        
     }  
@@ -132,24 +136,51 @@ class WPCAPI {
      */
     private function wpc_getposts_listby( $needle, $criteria = 'tag' ) {
         $return = [];
+              
+        if ( $criteria == 'tag' ) {
         
-        $tag = get_tag( $needle );
+            $tag = get_tag( $needle );
+
+            if ( $tag != null ) {         
+
+                $query = new \WP_Query( array(
+                    'tag' => $tag->slug,
+                    'post_type' => array( 'post', 'page' )
+                ) );  
+                //get content           
+                $pages = $query->posts;
+                //loop
+                foreach($pages as $page) {    
+                    if ( has_tag( $tag->name, $page->ID ) ) {                  
+                        //got tag
+                        array_push( $return, $this->wpc_create_entry( $page ) );
+                    }
+                } 
+
+            }
+            
+        }
         
-        if ( $tag != null ) {         
-  
-            $query = new \WP_Query( array(
-                'tag' => $tag->slug,
-                'post_type' => array( 'post', 'page' )
-            ) );  
-            //get content           
-            $pages = $query->posts;
-            //loop
-            foreach($pages as $page) {    
-                if ( has_tag( $tag->name, $page->ID ) ) {                  
-                    //got tag
-                    array_push( $return, $this->wpc_create_entry( $page ) );
-                }
-            } 
+        if ( $criteria == 'category' ) {
+            
+            $cat = get_category( $needle );
+            
+            if ( $cat != null ) { 
+
+                $query = new \WP_Query( array(
+                    'category_name' => $cat->name,
+                    'post_type' => array( 'post', 'page' )
+                ) );  
+                //get content           
+                $pages = $query->posts;
+                //loop
+                foreach($pages as $page) {    
+                    if ( has_category( $needle, $page->ID ) ) {                  
+                        //got tag
+                        array_push( $return, $this->wpc_create_entry( $page ) );
+                    }                   
+                } 
+            }
             
         }
         
@@ -165,6 +196,40 @@ class WPCAPI {
      */
     private function wpc_create_entry ( $post ) {
         
+        //get author name
+        $author = get_user_by( 'ID', $post->post_author );
+        $authorName = $author != false ? $author->display_name : "";
+        
+        //resolve tags into array
+        $tagList = [];
+        $tags = wp_get_post_tags( $post->ID );
+        
+        //tags
+        foreach ( $tags as $tag ) {
+            $tagArray = [
+                            'id' =>  $tag->term_id,
+                            'name' => $tag->name,
+                            'parent' => $tag->parent,
+                            'apilink' => get_home_url() . '/wp-json/wp/v2/tags/' . $tag->term_id
+                        ];
+            array_push( $tagList, $tagArray );
+        } 
+        
+        //categories
+        $catList = [];
+        $categories = wp_get_post_categories( $post->ID );
+        
+        //categories
+        foreach ( $categories as $category ) {
+            $catArray = [
+                            'id' =>  $category,                
+                            'name' => get_cat_name( $category ),
+                            'parent' => get_category_parents( $category ),
+                            'apilink' => get_home_url() . '/wp-json/wp/v2/categories/' . $category
+                        ];
+            array_push( $catList, $catArray );            
+        }
+        
         $return =   [ 
                         'id' => $post->ID,
                         'date' => $post->post_date,
@@ -175,7 +240,7 @@ class WPCAPI {
                         'slug' => $post->post_name, 
                         'type' => $post->post_type, 
                         'status' => $post->post_status,
-                        'author' => $post->post_author, 
+                        'author' => [ 'id' => $post->post_author, 'name' => $authorName ],
                         'title' => [ 'rendered' => $post->post_title ],
                         'excerpt' => [ 'rendered' => $post->post_excerpt ],
                         'featured_media' => [ 
@@ -183,6 +248,8 @@ class WPCAPI {
                                                 'medium' => get_the_post_thumbnail_url( $post->ID, 'medium' ),
                                                 'large' => get_the_post_thumbnail_url( $post->ID, 'large' ),
                                             ],
+                        'categories' => $catList,                       
+                        'tags' => $tagList,                    
                         'full' => get_home_url() . '/wp-json/wp/v2/posts/' . $post->ID
                     ];
         

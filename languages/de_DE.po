@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-05-02 21:20+0200\n"
+"POT-Creation-Date: 2023-05-05 08:45+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -60,13 +60,17 @@ msgstr ""
 msgid "Content per tag successfully requested."
 msgstr "Inhalt pro Tag erfolgreich angefordert."
 
-#: lib/WPCAPI.php:102
+#: lib/WPCAPI.php:101
 msgid "The requested tag does not exist. ID used: "
 msgstr "Der angeforderte Tag ist nicht vorhanden. Verwendete ID: "
 
-#: lib/WPCAPI.php:117
+#: lib/WPCAPI.php:118
 msgid "Content per category successfully sent."
 msgstr "Inhalt pro Kategorie erfolgreich gesendet."
+
+#: lib/WPCAPI.php:121
+msgid "The requested category does not exist. ID used: "
+msgstr "Die angeforderte Kategorie existiert nicht. Verwendete ID: "
 
 #: lib/WPCBackend.php:36
 msgid "Settings"
@@ -253,10 +257,30 @@ msgid "Add menu structure"
 msgstr "Menüstruktur hinzufügen"
 
 #: lib/WPCBackend.php:297
+msgid "API Rest Routes"
+msgstr "API-Restrouten"
+
+#: lib/WPCBackend.php:298
+msgid "List Posts by category: "
+msgstr "Listen Sie die Beiträge nach Kategorie auf: "
+
+#: lib/WPCBackend.php:298
+msgid "ID der Kategorie"
+msgstr "ID der Kategorie"
+
+#: lib/WPCBackend.php:299
+msgid "List Posts by tag: "
+msgstr "Listen Sie die Beiträge nach Tags auf: "
+
+#: lib/WPCBackend.php:299
+msgid "ID des Tags"
+msgstr "ID des Tags"
+
+#: lib/WPCBackend.php:300
 msgid "JSON data output"
 msgstr "JSON-Datenausgabe"
 
-#: lib/WPCBackend.php:298
+#: lib/WPCBackend.php:301
 msgid ""
 "This is the JSON output produced for the REST API displaying your menu "
 "structure. Access it via this link: "

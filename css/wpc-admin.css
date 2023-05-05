@@ -297,6 +297,9 @@ Stylesheet for the admin pages
 .wpc-api-json-display pre {
     margin: 0;
 }
+.wpc-text-highlight {
+    color: #d63638;    
+}
 /* breakpoints */
 @media (min-width: 576px) { 
     .wpc-modal-window {
