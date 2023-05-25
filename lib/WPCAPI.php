@@ -199,6 +199,7 @@ class WPCAPI {
         //get author name
         $author = get_user_by( 'ID', $post->post_author );
         $authorName = $author != false ? $author->display_name : "";
+        $authorURL = $author != false ? $author->user_url : "";
         
         //resolve tags into array
         $tagList = [];
@@ -240,7 +241,7 @@ class WPCAPI {
                         'slug' => $post->post_name, 
                         'type' => $post->post_type, 
                         'status' => $post->post_status,
-                        'author' => [ 'id' => $post->post_author, 'name' => $authorName ],
+                        'author' => [ 'id' => $post->post_author, 'name' => $authorName, 'url' => $authorURL ],
                         'title' => [ 'rendered' => $post->post_title ],
                         'excerpt' => [ 'rendered' => $post->post_excerpt ],
                         'featured_media' => [ 

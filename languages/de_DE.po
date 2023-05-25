@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp Connect Theme\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2023-05-05 08:45+0200\n"
+"POT-Creation-Date: 2023-05-24 22:36+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marco Nagel <mac@tsu-nami.de>\n"
 "Language-Team: tsunami <mac@tsu-nami.de>\n"
@@ -277,10 +277,24 @@ msgid "ID des Tags"
 msgstr "ID des Tags"
 
 #: lib/WPCBackend.php:300
+msgid "Example Javascript class"
+msgstr "Beispielhafte Javascript-Klasse"
+
+#: lib/WPCBackend.php:301
+msgid ""
+"If you like, you can download a zipped example javascript class which "
+"accesses data from the api as base for your web application. Use the "
+"following link: "
+msgstr ""
+"Wenn Sie möchten, können Sie ein gezipptes Beispiel einer Javascript-Klasse "
+"welche die Daten von der API abholt als Basis für Ihre Webanwendung laden. "
+"Nutzen Sie folgenden Link:"
+
+#: lib/WPCBackend.php:302
 msgid "JSON data output"
 msgstr "JSON-Datenausgabe"
 
-#: lib/WPCBackend.php:301
+#: lib/WPCBackend.php:303
 msgid ""
 "This is the JSON output produced for the REST API displaying your menu "
 "structure. Access it via this link: "

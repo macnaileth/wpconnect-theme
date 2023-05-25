@@ -294,11 +294,13 @@ class WPCBackend {
                             </div>                            
                             <div class="wpc-settings" id="wpc_settings_api">
                                 <h1 class="wp-heading-inline"><?php echo esc_html__( 'API settings', 'tsu-wpconnect-theme' ); ?></h1>
-                                <h2 class='title'><?php echo esc_html__( 'API Rest Routes', 'tsu-wpconnect-theme' ); ?></h2>
+                                <h2 class="title"><?php echo esc_html__( 'API Rest Routes', 'tsu-wpconnect-theme' ); ?></h2>
                                 <p><?php echo esc_html__( 'List Posts by category: ', 'tsu-wpconnect-theme' ) . '<strong>' . home_url() . '/wp-json/tsu-wpconnect/v1/site/catwise/<span class="wpc-text-highlight">[' . esc_html__( 'ID der Kategorie', 'tsu-wpconnect-theme' ) . ']</span></strong>'; ?></p>
                                 <p><?php echo esc_html__( 'List Posts by tag: ', 'tsu-wpconnect-theme' ) . '<strong>' . home_url() . '/wp-json/tsu-wpconnect/v1/site/tagwise/<span class="wpc-text-highlight">[' . esc_html__( 'ID des Tags', 'tsu-wpconnect-theme' ) . ']</span></strong>'; ?></p>
+                                <h2 class="title"><?php echo esc_html__( 'Example Javascript class', 'tsu-wpconnect-theme' ); ?></h2>
+                                <p><?php echo esc_html__( 'If you like, you can download a zipped example javascript class which accesses data from the api as base for your web application. Use the following link: ', 'tsu-wpconnect-theme' ) . ' <a target="_blank" rel="noopener noreferrer" href="' . get_template_directory_uri() . '/examples/wp-connect-js.zip">' . get_template_directory_uri() . '/examples/wp-connect-js.zip' . '</a>'; ?></p>
                                 <h2 class="title"><?php echo esc_html__( 'JSON data output', 'tsu-wpconnect-theme' ); ?></h1>
-                                <p><?php echo esc_html__( 'This is the JSON output produced for the REST API displaying your menu structure. Access it via this link: ', 'tsu-wpconnect-theme' ) . '<a target="_blank" rel="noopener noreferrer" href="' . home_url() . '/wp-json/tsu-wpconnect/v1/site/structure/">' . home_url() . '/wp-json/tsu-wpconnect/v1/site/structure/</a>'; ?> </p>
+                                <p><?php echo esc_html__( 'This is the JSON output produced for the REST API displaying your menu structure. Access it via this link: ', 'tsu-wpconnect-theme' ) . '<a href="' . home_url() . '/wp-json/tsu-wpconnect/v1/site/structure/" download>' . home_url() . '/wp-json/tsu-wpconnect/v1/site/structure/</a>'; ?> </p>
                                 <div class="wpc-api-json-display">
                                     <?php echo '<pre>' . json_encode ( json_decode( $menu ), JSON_PRETTY_PRINT ) . '</pre>'; ?>
                                 </div>

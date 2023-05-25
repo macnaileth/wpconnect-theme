@@ -1,8 +1,8 @@
 === tsunami wp connect theme ===
 Contributors: Marco Nagel
-Version: 0.1.5
+Version: 0.1.8
 Requires at least: 6.1.1
-Tested up to: 6.1.1
+Tested up to: 6.2.2
 Requires PHP: 8.0
 License: CC BY-NC 4.0
 License URI: https://creativecommons.org/licenses/by-nc/4.0/
@@ -34,6 +34,7 @@ None ATM
 12.02.2023 - basic menus could be created and deleted, started ui for menu item addition
 16.04.2023 - finished menus, added REST route to menu structure
 05.05.2023 - finished additional REST routes for categories and tags, working on JS libs now
+25.05.2023 - added example js class and settings.json for download
 
 == upcoming ==
 
@@ -59,6 +60,10 @@ None ATM
 = 0.1.5 =
 
 - Additional routes added and working
+
+= 0.1.8 =
+
+- js examples added
 
 == Resources & third party ==
 
