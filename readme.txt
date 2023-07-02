@@ -17,8 +17,8 @@ also create a settings.json if you want to use my connect library for your app.
 Also you can setup menus, additional css, fonts etc for the Gutenberg Editor and the frontend stopper page if needed and more.
 
 REST route to access from your Frontend, site or app for menu structure: /wp-json/tsu-wpconnect/v1/site/structure/
-For category lists: https://wp.socialwerks.de/wp-json/tsu-wpconnect/v1/site/catwise/[ID]
-and tags: https://wp.socialwerks.de/wp-json/tsu-wpconnect/v1/site/tagwise/[ID]
+For category lists: /wp-json/tsu-wpconnect/v1/site/catwise/[ID]
+and tags: /wp-json/tsu-wpconnect/v1/site/tagwise/[ID]
 
 == Frequently Asked Questions ==
 
